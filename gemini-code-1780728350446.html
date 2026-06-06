@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anamnese: Diagnóstico do Seu Negócio</title>
+    <style>
+        :root {
+            --primary-color: #1e3a8a; /* Azul escuro inspirado na logo */
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --border-color: #cbd5e1;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            background: var(--card-bg);
+            padding: 15px 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            object-fit: contain;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin: 0;
+            font-size: 1.6rem;
+        }
+
+        .instructions {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary-color);
+            padding: 15px;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            font-size: 1.15rem;
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .section-counter {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: normal;
+            float: right;
+            text-transform: none;
+        }
+
+        /* Estilos do Cadastro */
+        .form-field {
+            margin-bottom: 15px;
+        }
+
+        .form-field label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+        }
+
+        .form-field input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .form-field input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+        }
+
+        /* Estilos das Perguntas */
+        .question-group {
+            margin-bottom: 20px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            margin-top: 5px;
+            margin-right: 12px;
+            transform: scale(1.1);
+        }
+
+        .answer-container {
+            display: none;
+            margin-top: 10px;
+            margin-left: 28px;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .answer-container textarea {
+            width: 100%;
+            min-height: 80px;
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            resize: vertical;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        .answer-container textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
+        }
+
+        .submit-btn {
+            display: block;
+            width: 100%;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 40px;
+        }
+
+        .submit-btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .error-message {
+            color: #dc2626;
+            font-size: 0.85rem;
+            margin-top: 5px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <!-- Mantenha o arquivo Gemini_Generated_Image_efqt1befqt1befqt.png na mesma pasta do arquivo HTML -->
+        <img src="Gemini_Generated_Image_efqt1befqt1befqt.png" alt="Gabi's Marketing Logo" class="logo">
+        <h1>Anamnese: Diagnóstico do Seu Negócio</h1>
+    </header>
+
+    <!-- Configuração do FormSubmit direcionando para seu e-mail -->
+    <form id="anamneseForm" action="https://formsubmit.co/gabismarketing26@gmail.com" method="POST" onsubmit="return validarFormulario(event)">
+        
+        <!-- Configurações internas do FormSubmit -->
+        <input type="hidden" name="_next" value="https://formsubmit.co/your-thanks-page (opcional)">
+        <input type="hidden" name="_subject" id="emailSubject" value="Anamnese - Novo Cadastro">
+        <input type="hidden" name="_template" value="table">
+
+        <!-- SEÇÃO DE CADASTRO -->
+        <div class="section-card">
+            <h2 class="section-title">Dados Cadastrais</h2>
+            <div class="form-field">
+                <label for="nome">Nome e Sobrenome *</label>
+                <input type="text" id="nome" name="Cadastro_Nome" required oninput="atualizarAssuntoEmail(this.value)">
+            </div>
+            <div class="form-field">
+                <label for="whatsapp">WhatsApp *</label>
+                <input type="tel" id="whatsapp" name="Cadastro_WhatsApp" placeholder="(00) 00000-0000" required>
+            </div>
+            <div class="form-field">
+                <label for="email">E-mail *</label>
+                <input type="email" id="email" name="Cadastro_Email" required>
+            </div>
+        </div>
+
+        <div class="instructions">
+            Leia as perguntas das seções com calma, escolha <strong>no mínimo 3 perguntas de cada</strong> para responder. 
+            Fique à vontade para responder todas, se quiser. No final, poderá acionar sua orientação mesmo se não tiver resposta para tudo.
+        </div>
+
+        <!-- SEÇÃO 1 -->
+        <div class="section-card" data-section="1">
+            <h2 class="section-title">
+                SEÇÃO 1: SITUAÇÃO ATUAL
+                <span class="section-counter">(<span class="count">0</span> de min. 3 selecionadas)</span>
+            </h2>
+            
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 1.1 Há quanto tempo o negócio existe?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S1_P1.1_Tempo_Negocio" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 1.2 Qual é o faturamento mensal aproximado?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S1_P1.2_Faturamento" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 1.3 Qual é sua margem de lucro aproximada?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S1_P1.3_Margem_Lucro" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 1.4 Quantas pessoas trabalham com você?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S1_P1.4_Equipe" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 1.5 Qual é seu principal canal de vendas hoje?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S1_P1.5_Canal_Vendas" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 1.6 Qual é seu custo mensal fixo (aluguel, salários, ferramentas, etc)?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S1_P1.6_Custo_Fixo" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 1.7 Você tem um diferencial claro em relação aos concorrentes?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S1_P1.7_Diferencial" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+            <div class="error-message">Por favor, selecione e responda pelo menos 3 perguntas nesta seção.</div>
+        </div>
+
+        <!-- SEÇÃO 2 -->
+        <div class="section-card" data-section="2">
+            <h2 class="section-title">
+                SEÇÃO 2: DORES E DESAFIOS
+                <span class="section-counter">(<span class="count">0</span> de min. 3 selecionadas)</span>
+            </h2>
+            
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 2.1 Qual é seu maior desafio operacional agora?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S2_P2.1_Desafio_Operacional" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 2.2 Como você adquire clientes atualmente?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S2_P2.2_Aquisicao_Clientes" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 2.3 Qual é a taxa de retenção/repetição de clientes?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S2_P2.3_Taxa_Retencao" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 2.4 Qual é o custo de aquisição de cliente (CAC) aproximado?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S2_P2.4_CAC" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 2.5 O que consome mais tempo do seu dia?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S2_P2.5_Consumo_Tempo" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 2.6 Você tem feedback direto dos clientes sobre o que melhorar?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S2_P2.6_Feedback_Clientes" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+            <div class="error-message">Por favor, selecione e responda pelo menos 3 perguntas nesta seção.</div>
+        </div>
+
+        <!-- SEÇÃO 3 -->
+        <div class="section-card" data-section="3">
+            <h2 class="section-title">
+                SEÇÃO 3: METAS E OPORTUNIDADES
+                <span class="section-counter">(<span class="count">0</span> de min. 3 selecionadas)</span>
+            </h2>
+            
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 3.1 Qual é sua meta de faturamento para os próximos 12 meses?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S3_P3.1_Meta_Faturamento" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 3.2 Qual seria o impacto ideal de uma estratégia digital?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S3_P3.2_Impacto_Digital" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 3.3 Qual é seu maior gargalo para crescer?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S3_P3.3_Gargalo_Crescimento" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 3.4 Qual é seu maior medo em relação ao crescimento digital?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S3_P3.4_Medo_Digital" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 3.5 Você já investiu em marketing digital antes?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S3_P3.5_Investimento_Previo" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 3.6 Existe um produto/serviço que você gostaria de destacar mais?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S3_P3.6_Produto_Destaque" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+            <div class="error-message">Por favor, selecione e responda pelo menos 3 perguntas nesta seção.</div>
+        </div>
+
+        <!-- SEÇÃO 4 -->
+        <div class="section-card" data-section="4">
+            <h2 class="section-title">
+                SEÇÃO 4: RECURSOS E DISPOSIÇÃO
+                <span class="section-counter">(<span class="count">0</span> de min. 3 selecionadas)</span>
+            </h2>
+            
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 4.1 Qual é seu orçamento mensal disponível para estratégia?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S4_P4.1_Orcamento_Mensal" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 4.2 Quanto tempo você pode dedicar à implementação?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S4_P4.2_Tempo_Dedicado" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 4.3 Qual é seu nível de conhecimento em ferramentas digitais?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S4_P4.3_Conhecimento_Digital" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 4.4 Você tem alguém na equipe que pode ajudar na implementação?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S4_P4.4_Apoio_Equipe" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 4.5 Qual é sua maior objeção para não ter feito isso antes?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S4_P4.5_Objecao" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 4.6 Qual é seu prazo realista para ver resultados?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S4_P4.6_Prazo_Resultados" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+            <div class="error-message">Por favor, selecione e responda pelo menos 3 perguntas nesta seção.</div>
+        </div>
+
+        <!-- SEÇÃO 5 -->
+        <div class="section-card" data-section="5">
+            <h2 class="section-title">
+                SEÇÃO 5: O INDIVÍDUO POR TRÁS DO NEGÓCIO
+                <span class="section-counter">(<span class="count">0</span> de min. 3 selecionadas)</span>
+            </h2>
+            
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 5.1 Quanto VOCÊ custa mensalmente? (despesas fixas, alimentação, lazer, transporte, etc.)
+                </label>
+                <div class="answer-container">
+                    <textarea name="S5_P5.1_Custo_Pessoal" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 5.2 Quanto você precisa ganhar para viver bem?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S5_P5.2_Ganho_Ideal" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 5.3 Você sabe separar o Eu x Empresa?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S5_P5.3_Separacao_Eu_Empresa" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 5.4 Teria algo que você considera inegociável?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S5_P5.4_Inegociavel" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 5.5 Sobra algo para investimentos e/ou imprevistos?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S5_P5.5_Reserva_Investimento" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 5.6 Como você lida com rejeição ou fracasso?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S5_P5.6_Rejeicao_Fracasso" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 5.7 Qual é seu maior medo pessoal em relação ao negócio?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S5_P5.7_Maior_Medo" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 5.8 Qual é seu maior sonho além do negócio?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S5_P5.8_Maior_Sonho" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+
+            <div class="question-group">
+                <label class="checkbox-label">
+                    <input type="checkbox" onchange="toggleResposta(this)"> 5.9 Você tem tempo para descansar e se recuperar?
+                </label>
+                <div class="answer-container">
+                    <textarea name="S5_P5.9_Tempo_Descanso" placeholder="Digite sua resposta aqui..."></textarea>
+                </div>
+            </div>
+            <div class="error-message">Por favor, selecione e responda pelo menos 3 perguntas nesta seção.</div>
+        </div>
+
+        <button type="submit" class="submit-btn">Enviar Diagnóstico</button>
+    </form>
+</div>
+
+<script>
+    // Atualiza dinamicamente o campo do assunto com o nome do cliente
+    function atualizarAssuntoEmail(nome) {
+        const assuntoInput = document.getElementById('emailSubject');
+        if(nome.trim() !== "") {
+            assuntoInput.value = "Anamnese - " + nome;
+        } else {
+            assuntoInput.value = "Anamnese - Novo Cadastro";
+        }
+    }
+
+    function toggleResposta(checkbox) {
+        const container = checkbox.parentElement.nextElementSibling;
+        const textarea = container.querySelector('textarea');
+        
+        if (checkbox.checked) {
+            container.style.display = 'block';
+            textarea.setAttribute('required', 'true');
+        } else {
+            container.style.display = 'none';
+            textarea.removeAttribute('required');
+            textarea.value = ''; 
+        }
+
+        atualizarContador(checkbox);
+    }
+
+    function atualizarContador(element) {
+        const card = element.closest('.section-card');
+        const checkboxesMarcados = card.querySelectorAll('input[type="checkbox"]:checked').length;
+        const counter = card.querySelector('.count');
+        if(counter) {
+            counter.textContent = checkboxesMarcados;
+        }
+        
+        if (checkboxesMarcados >= 3) {
+            const errorMsg = card.querySelector('.error-message');
+            if(errorMsg) errorMsg.style.display = 'none';
+        }
+    }
+
+    function validarFormulario(event) {
+        let formValido = true;
+        const cards = document.querySelectorAll('.section-card[data-section]');
+
+        cards.forEach(card => {
+            const numMarcados = card.querySelectorAll('input[type="checkbox"]:checked').length;
+            const errorMsg = card.querySelector('.error-message');
+            
+            if (numMarcados < 3) {
+                formValido = false;
+                errorMsg.style.display = 'block';
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                errorMsg.style.display = 'none';
+            }
+        });
+
+        if (!formValido) {
+            event.preventDefault();
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
+</body>
+</html>
