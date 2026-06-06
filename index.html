@@ -41,7 +41,7 @@
         }
 
         .logo {
-            width: 160px; /* Dobro do tamanho original (80px -> 160px) */
+            width: 160px;
             height: 160px;
             object-fit: contain;
         }
@@ -231,6 +231,27 @@
             animation: fadeIn 0.3s ease-in-out;
         }
 
+        .options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 8px;
+            padding: 5px 0;
+        }
+
+        .radio-option, .checkbox-option {
+            display: flex;
+            align-items: flex-start;
+            cursor: pointer;
+            font-size: 0.95rem;
+            font-weight: normal;
+        }
+
+        .radio-option input, .checkbox-option input {
+            margin-top: 4px;
+            margin-right: 10px;
+        }
+
         .answer-container textarea {
             width: 100%;
             min-height: 80px;
@@ -335,13 +356,18 @@
                     <label for="whatsapp">WhatsApp *</label>
                     <input type="tel" id="whatsapp" name="Cadastro_WhatsApp" placeholder="(00) 00000-0000" required>
                 </div>
+                <!-- NOVO CAMPO: Nome da empresa ou projeto -->
+                <div class="form-field">
+                    <label for="empresa">Nome da empresa ou projeto *</label>
+                    <input type="text" id="empresa" name="Cadastro_Empresa_Projeto" required>
+                </div>
                 <div class="form-field">
                     <label for="email">E-mail *</label>
                     <input type="email" id="email" name="Cadastro_Email" required>
                 </div>
             </div>
             
-            <!-- Bloco de Orientação Atualizado -->
+            <!-- Bloco de Orientação -->
             <div class="instructions">
                 <p><strong>Como responder seu formulário:</strong></p>
                 <ul>
@@ -364,12 +390,19 @@
                     <span class="section-counter">(<span class="count">0</span> de min. 3 selecionadas)</span>
                 </h2>
                 
+                <!-- Pergunta 1.1: Modificada para Única Escolha -->
                 <div class="question-group">
                     <label class="checkbox-label">
                         <input type="checkbox" onchange="toggleResposta(this)"> 1.1 Há quanto tempo o negócio existe?
                     </label>
                     <div class="answer-container">
-                        <textarea name="S1_P1.1_Tempo_Negocio" placeholder="Digite sua resposta aqui..."></textarea>
+                        <div class="options-container">
+                            <label class="radio-option"><input type="radio" name="S1_P1.1_Tempo_Negocio_Opcao" value="Entre 6 meses e 1 ano" onchange="atualizarOpcaoUnica(this)"> Entre 6 meses e 1 ano</label>
+                            <label class="radio-option"><input type="radio" name="S1_P1.1_Tempo_Negocio_Opcao" value="Entre 2 e 5 anos" onchange="atualizarOpcaoUnica(this)"> Entre 2 e 5 anos</label>
+                            <label class="radio-option"><input type="radio" name="S1_P1.1_Tempo_Negocio_Opcao" value="Entre 5 e 10 anos" onchange="atualizarOpcaoUnica(this)"> Entre 5 e 10 anos</label>
+                            <label class="radio-option"><input type="radio" name="S1_P1.1_Tempo_Negocio_Opcao" value="Mais de 10 anos" onchange="atualizarOpcaoUnica(this)"> Mais de 10 anos</label>
+                        </div>
+                        <input type="hidden" name="S1_P1.1_Tempo_Negocio" value="">
                     </div>
                 </div>
 
@@ -400,12 +433,25 @@
                     </div>
                 </div>
 
+                <!-- Pergunta 1.5: Modificada para Múltipla Escolha -->
                 <div class="question-group">
                     <label class="checkbox-label">
                         <input type="checkbox" onchange="toggleResposta(this)"> 1.5 Qual é seu principal canal de vendas hoje?
                     </label>
                     <div class="answer-container">
-                        <textarea name="S1_P1.5_Canal_Vendas" placeholder="Digite sua resposta aqui..."></textarea>
+                        <div class="options-container">
+                            <label class="checkbox-option"><input type="checkbox" name="S1_P1.5_Canal_Vendas_Multiplo[]" value="Ligação" onchange="atualizarOpcaoMultipla(this)"> Ligação</label>
+                            <label class="checkbox-option"><input type="checkbox" name="S1_P1.5_Canal_Vendas_Multiplo[]" value="Loja física" onchange="atualizarOpcaoMultipla(this)"> Loja física</label>
+                            <label class="checkbox-option"><input type="checkbox" name="S1_P1.5_Canal_Vendas_Multiplo[]" value="Whatsapp" onchange="atualizarOpcaoMultipla(this)"> Whatsapp</label>
+                            <label class="checkbox-option"><input type="checkbox" name="S1_P1.5_Canal_Vendas_Multiplo[]" value="Instagram" onchange="atualizarOpcaoMultipla(this)"> Instagram</label>
+                            <label class="checkbox-option"><input type="checkbox" name="S1_P1.5_Canal_Vendas_Multiplo[]" value="Facebook" onchange="atualizarOpcaoMultipla(this)"> Facebook</label>
+                            <label class="checkbox-option"><input type="checkbox" name="S1_P1.5_Canal_Vendas_Multiplo[]" value="Tiktok" onchange="atualizarOpcaoMultipla(this)"> Tiktok</label>
+                            <label class="checkbox-option"><input type="checkbox" name="S1_P1.5_Canal_Vendas_Multiplo[]" value="LinkedIn" onchange="atualizarOpcaoMultipla(this)"> LinkedIn</label>
+                            <label class="checkbox-option"><input type="checkbox" name="S1_P1.5_Canal_Vendas_Multiplo[]" value="IFood / 99" onchange="atualizarOpcaoMultipla(this)"> IFood / 99</label>
+                            <label class="checkbox-option"><input type="checkbox" name="S1_P1.5_Canal_Vendas_Multiplo[]" value="Plataforma de delivery própria" onchange="atualizarOpcaoMultipla(this)"> Plataforma de delivery própria</label>
+                            <label class="checkbox-option"><input type="checkbox" name="S1_P1.5_Canal_Vendas_Multiplo[]" value="E-commerce: Mercado Livre, Shopee, etc." onchange="atualizarOpcaoMultipla(this)"> E-commerce: Mercado Livre, Shopee, etc.</label>
+                        </div>
+                        <input type="hidden" name="S1_P1.5_Canal_Vendas" value="">
                     </div>
                 </div>
 
@@ -586,12 +632,20 @@
                     </div>
                 </div>
 
+                <!-- Pergunta 4.3: Modificada para Única Escolha -->
                 <div class="question-group">
                     <label class="checkbox-label">
                         <input type="checkbox" onchange="toggleResposta(this)"> 4.3 Qual é seu nível de conhecimento em ferramentas digitais?
                     </label>
                     <div class="answer-container">
-                        <textarea name="S4_P4.3_Conhecimento_Digital" placeholder="Digite sua resposta aqui..."></textarea>
+                        <div class="options-container">
+                            <label class="radio-option"><input type="radio" name="S4_P4.3_Conhecimento_Digital_Opcao" value="Zero: Só sabe ler as figura" onchange="atualizarOpcaoUnica(this)"> <strong>Zero:</strong> Só sabe ler as figura</label>
+                            <label class="radio-option"><input type="radio" name="S4_P4.3_Conhecimento_Digital_Opcao" value="Baixo: Anota tudo no caderno, só sabe mandar zap" onchange="atualizarOpcaoUnica(this)"> <strong>Baixo:</strong> Anota tudo no caderno, só sabe mandar zap</label>
+                            <label class="radio-option"><input type="radio" name="S4_P4.3_Conhecimento_Digital_Opcao" value="Médio: Sabe usar o navegador de internet, usa planilhas, documentos de texto, cria apresentações, sabe postar conteúdo no zap e algumas coisas no instagram." onchange="atualizarOpcaoUnica(this)"> <strong>Médio:</strong> Sabe usar o navegador de internet, usa planilhas, documentos de texto, cria apresentações, sabe postar conteúdo no zap e algumas coisas no instagram.</label>
+                            <label class="radio-option"><input type="radio" name="S4_P4.3_Conhecimento_Digital_Opcao" value="Alto: Tudo do médio, mas entende das ferramentas da atualidade, faz criações com IA e já tem um escritório digital. Só precisa de ajuda estratégica." onchange="atualizarOpcaoUnica(this)"> <strong>Alto:</strong> Tudo do médio, mas entende das ferramentas da atualidade, faz criações com IA e já tem um escritório digital. Só precisa de ajuda estratégica.</label>
+                            <label class="radio-option"><input type="radio" name="S4_P4.3_Conhecimento_Digital_Opcao" value="Cria: É desenvolvedor/designer. Só precisa de ajuda estratégica." onchange="atualizarOpcaoUnica(this)"> <strong>Cria:</strong> É desenvolvedor/designer. Só precisa de ajuda estratégica.</label>
+                        </div>
+                        <input type="hidden" name="S4_P4.3_Conhecimento_Digital" value="">
                     </div>
                 </div>
 
@@ -707,7 +761,7 @@
 
                 <div class="question-group">
                     <label class="checkbox-label">
-                        <input type="checkbox" onchange="toggleResposta(this)"> 5.9 Você tem tempo para descansar e se recuperar?
+                        <input type="checkbox" onchange="toggleResposta(this)"> 5.9 Você tempo para descansar e se recuperar?
                     </label>
                     <div class="answer-container">
                         <textarea name="S5_P5.9_Tempo_Descanso" placeholder="Digite sua resposta aqui..."></textarea>
@@ -732,7 +786,6 @@
     const indicadores = document.querySelectorAll(".step-indicator");
     const barraProgresso = document.getElementById("progressBar");
 
-    // Inicializa exibindo a primeira etapa
     atualizarInterfaceEtapa();
 
     function atualizarAssuntoEmail(nome) {
@@ -747,21 +800,63 @@
     function toggleResposta(checkbox) {
         const container = checkbox.parentElement.nextElementSibling;
         const textarea = container.querySelector('textarea');
+        const hiddenInput = container.querySelector('input[type="hidden"]');
         
         if (checkbox.checked) {
             container.style.display = 'block';
-            textarea.setAttribute('required', 'true');
+            if (textarea) textarea.setAttribute('required', 'true');
+            if (hiddenInput) hiddenInput.setAttribute('required', 'true');
         } else {
             container.style.display = 'none';
-            textarea.removeAttribute('required');
-            textarea.value = ''; 
+            if (textarea) {
+                textarea.removeAttribute('required');
+                textarea.value = '';
+            }
+            if (hiddenInput) {
+                hiddenInput.removeAttribute('required');
+                hiddenInput.value = '';
+            }
+            
+            // Limpa seleções internas se houver
+            const radios = container.querySelectorAll('input[type="radio"]');
+            radios.forEach(r => r.checked = false);
+            const checkboxes = container.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(c => c.checked = false);
         }
         atualizarContador(checkbox);
     }
 
+    // Gerencia o valor do campo oculto nas perguntas de ÚNICA escolha (radio)
+    function atualizarOpcaoUnica(radio) {
+        const container = radio.closest('.answer-container');
+        const hiddenInput = container.querySelector('input[type="hidden"]');
+        if (hiddenInput) {
+            hiddenInput.value = radio.value;
+        }
+    }
+
+    // Gerencia o valor do campo oculto nas perguntas de MÚLTIPLA escolha (checkbox interno)
+    function atualizarOpcaoMultipla(checkboxInterno) {
+        const container = checkboxInterno.closest('.answer-container');
+        const hiddenInput = container.querySelector('input[type="hidden"]');
+        const marcados = container.querySelectorAll('input[type="checkbox"]:checked');
+        
+        let valores = [];
+        marcados.forEach(item => valores.push(item.value));
+        
+        if (hiddenInput) {
+            hiddenInput.value = valores.join(', ');
+            if (valores.length > 0) {
+                hiddenInput.removeAttribute('required');
+            } else {
+                hiddenInput.setAttribute('required', 'true');
+            }
+        }
+    }
+
     function atualizarContador(element) {
         const card = element.closest('.section-card');
-        const checkboxesMarcados = card.querySelectorAll('input[type="checkbox"]:checked').length;
+        const checkboxesMarcados = card.querySelectorAll('.question-group > label.checkbox-label > input[type="checkbox"]:checked').length;
         const counter = card.querySelector('.count');
         if(counter) {
             counter.textContent = checkboxesMarcados;
@@ -807,10 +902,24 @@
         
         const card = etapaAtiva.querySelector('.section-card[data-section]');
         if (card) {
-            const numMarcados = card.querySelectorAll('input[type="checkbox"]:checked').length;
+            const numMarcados = card.querySelectorAll('.question-group > label.checkbox-label > input[type="checkbox"]:checked').length;
             const errorMsg = card.querySelector('.error-message');
             
+            // Verifica se as perguntas marcadas possuem alguma opção selecionada nelas
+            let selecoesValidas = true;
+            const hiddensAtivos = card.querySelectorAll('.answer-container[style*="display: block"] input[type="hidden"][required]');
+            hiddensAtivos.forEach(hidden => {
+                if(hidden.value === "") {
+                    selecoesValidas = false;
+                }
+            });
+
             if (numMarcados < 3) {
+                errorMsg.textContent = "Por favor, selecione e responda pelo menos 3 perguntas nesta seção para poder avançar.";
+                errorMsg.style.display = 'block';
+                return false;
+            } else if (!selecoesValidas) {
+                errorMsg.textContent = "Por favor, selecione uma opção válida para as perguntas de múltipla escolha marcadas.";
                 errorMsg.style.display = 'block';
                 return false;
             } else {
