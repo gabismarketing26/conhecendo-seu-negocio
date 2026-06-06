@@ -847,50 +847,35 @@
         barraProgresso.style.width = ((etapaAtual / (etapas.length - 1)) * 100) + "%";
     }
 
-    async function enviarFormularioAPI(event) {
-        event.preventDefault();
+  async function enviarFormularioAPI(event) {
+    event.preventDefault();
+    
+    if (!validarEtapaAtual()) return false;
+
+    const btnSubmit = document.getElementById("btnSubmit");
+    btnSubmit.disabled = true;
+    btnSubmit.textContent = "Enviando...";
+
+    const formulario = document.getElementById("anamneseForm");
+    const formData = new FormData(formulario);
+
+    try {
+        const resposta = await fetch(formulario.action, {
+            method: "POST",
+            body: formData,
+            headers: { 'Accept': 'application/json' }
+        });
         
-        if (!validarEtapaAtual()) return false;
-
-        const btnSubmit = document.getElementById("btnSubmit");
-        btnSubmit.disabled = true;
-        btnSubmit.textContent = "Enviando...";
-
-        const formulario = document.getElementById("anamneseForm");
-        const formData = new FormData(formulario);
-
-        try {
-            const resposta = await fetch(formulario.action, {
-                method: "POST",
-                body: formData,
-                headers: { 'Accept': 'application/json' }
-            });
-            
-            if(resposta.ok) {
-                formulario.style.display = "none";
-                document.getElementById("progressoGeral").style.display = "none";
-                document.getElementById("successScreen").style.display = "block";
-            } else {
-                throw new Error("Erro no servidor");
-            }
-        } catch (error) {
-            alert("Ocorreu um problema ao enviar o diagnóstico. Verifique sua conexão e tente novamente.");
-            btnSubmit.disabled = false;
-            btnSubmit.textContent = "Enviar Diagnóstico";
+        if(resposta.ok) {
+            // Redireciona para a página de agradecimento na mesma pasta
+            window.location.href = "obrigado.html";
+        } else {
+            throw new Error("Erro no servidor");
         }
-    }
-
-    function reiniciarFormulario() {
-        document.getElementById("anamneseForm").reset();
-        etapaAtual = 0;
-        document.querySelectorAll(".answer-container").forEach(c => c.style.display = "none");
-        document.querySelectorAll(".answer-container textarea").forEach(i => i.removeAttribute("required"));
-        document.querySelectorAll(".count").forEach(c => c.textContent = "0");
-        document.getElementById("successScreen").style.display = "none";
-        document.getElementById("anamneseForm").style.display = "block";
-        document.getElementById("progressoGeral").style.display = "flex";
-        atualizarInterfaceEtapa();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+    } catch (error) {
+        alert("Ocorreu um problema ao enviar o diagnóstico. Verifique sua conexão e tente novamente.");
+        btnSubmit.disabled = false;
+        btnSubmit.textContent = "Enviar Diagnóstico";
     }
 </script>
 </body>
