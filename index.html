@@ -6,7 +6,7 @@
     <title>Anamnese: Diagnóstico do Seu Negócio</title>
     <style>
         :root {
-            --primary-color: #1e3a8a; /* Azul escuro inspirado na logo */
+            --primary-color: #1e3a8a;
             --bg-color: #f8fafc;
             --card-bg: #ffffff;
             --text-color: #1e293b;
@@ -52,7 +52,6 @@
             font-size: 1.8rem;
         }
 
-        /* Barra de Progresso Visual */
         .progress-container {
             display: flex;
             justify-content: space-between;
@@ -110,7 +109,6 @@
             color: white;
         }
 
-        /* Caixa de Orientação Formatada */
         .instructions {
             background-color: #eff6ff;
             border-left: 4px solid var(--primary-color);
@@ -120,25 +118,11 @@
             margin-bottom: 30px;
         }
 
-        .instructions p {
-            margin: 0 0 10px 0;
-        }
+        .instructions p { margin: 0 0 10px 0; }
+        .instructions ul { margin: 0 0 15px 0; padding-left: 20px; }
+        .instructions li { margin-bottom: 8px; }
+        .instructions .final-note { margin-bottom: 0; font-weight: 500; }
 
-        .instructions ul {
-            margin: 0 0 15px 0;
-            padding-left: 20px;
-        }
-
-        .instructions li {
-            margin-bottom: 8px;
-        }
-
-        .instructions .final-note {
-            margin-bottom: 0;
-            font-weight: 500;
-        }
-
-        /* Controle das Etapas com Transição Transparente */
         .form-step {
             display: none;
             opacity: 0;
@@ -179,50 +163,14 @@
             text-transform: none;
         }
 
-        /* Estilos do Cadastro */
-        .form-field {
-            margin-bottom: 15px;
-        }
+        .form-field { margin-bottom: 15px; }
+        .form-field label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.9rem; }
+        .form-field input { width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; box-sizing: border-box; font-family: inherit; }
+        .form-field input:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1); }
 
-        .form-field label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 5px;
-            font-size: 0.9rem;
-        }
-
-        .form-field input {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            box-sizing: border-box;
-            font-family: inherit;
-        }
-
-        .form-field input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
-        }
-
-        /* Estilos das Perguntas */
-        .question-group {
-            margin-bottom: 20px;
-        }
-
-        .checkbox-label {
-            display: flex;
-            align-items: flex-start;
-            cursor: pointer;
-            font-weight: 500;
-        }
-
-        .checkbox-label input[type="checkbox"] {
-            margin-top: 5px;
-            margin-right: 12px;
-            transform: scale(1.1);
-        }
+        .question-group { margin-bottom: 20px; }
+        .checkbox-label { display: flex; align-items: flex-start; cursor: pointer; font-weight: 500; }
+        .checkbox-label input[type="checkbox"] { margin-top: 5px; margin-right: 12px; transform: scale(1.1); }
 
         .answer-container {
             display: none;
@@ -231,26 +179,9 @@
             animation: fadeIn 0.3s ease-in-out;
         }
 
-        .options-container {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-top: 8px;
-            padding: 5px 0;
-        }
-
-        .radio-option, .checkbox-option {
-            display: flex;
-            align-items: flex-start;
-            cursor: pointer;
-            font-size: 0.95rem;
-            font-weight: normal;
-        }
-
-        .radio-option input, .checkbox-option input {
-            margin-top: 4px;
-            margin-right: 10px;
-        }
+        .options-container { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; padding: 5px 0; }
+        .radio-option, .checkbox-option { display: flex; align-items: flex-start; cursor: pointer; font-size: 0.95rem; font-weight: normal; }
+        .radio-option input, .checkbox-option input { margin-top: 4px; margin-right: 10px; }
 
         .answer-container textarea {
             width: 100%;
@@ -262,72 +193,32 @@
             box-sizing: border-box;
             font-family: inherit;
         }
+        .answer-container textarea:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1); }
 
-        .answer-container textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
-        }
-
-        /* Botões de Navegação */
-        .btn-container {
-            display: flex;
-            gap: 15px;
-            margin-top: 30px;
-        }
-
-        .nav-btn {
-            flex: 1;
-            padding: 15px;
-            font-size: 1.05rem;
-            font-weight: bold;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: none;
-        }
-
-        .prev-btn {
-            background-color: #e2e8f0;
-            color: #475569;
-        }
-
-        .prev-btn:hover {
-            background-color: #cbd5e1;
-        }
-
-        .next-btn, .submit-btn {
-            background-color: var(--primary-color);
-            color: white;
-        }
-
-        .next-btn:hover, .submit-btn:hover {
-            background-color: #1d4ed8;
-        }
+        .btn-container { display: flex; gap: 15px; margin-top: 30px; }
+        .nav-btn { flex: 1; padding: 15px; font-size: 1.05rem; font-weight: bold; border-radius: 6px; cursor: pointer; transition: all 0.2s; border: none; }
+        .prev-btn { background-color: #e2e8f0; color: #475569; }
+        .prev-btn:hover { background-color: #cbd5e1; }
+        .next-btn, .submit-btn { background-color: var(--primary-color); color: white; }
+        .next-btn:hover, .submit-btn:hover { background-color: #1d4ed8; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-5px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .error-message {
-            color: #dc2626;
-            font-size: 0.85rem;
-            margin-top: 5px;
-            display: none;
-        }
+        .error-message { color: #dc2626; font-size: 0.85rem; margin-top: 5px; display: none; }
     </style>
 </head>
 <body>
 
-<div class="container">
+<div class="container" id="mainContainer">
     <header>
         <img src="Gemini_Generated_Image_efqt1befqt1befqt.png" alt="Gabi's Marketing Logo" class="logo">
         <h1>Anamnese: Diagnóstico do Seu Negócio</h1>
     </header>
 
-    <!-- Barra de Progresso Visual das Seções -->
-    <div class="progress-container">
+    <div class="progress-container" id="progressoGeral">
         <div class="progress-bar" id="progressBar"></div>
         <div class="step-indicator active">★</div>
         <div class="step-indicator">1</div>
@@ -337,12 +228,7 @@
         <div class="step-indicator">5</div>
     </div>
 
-    <!-- Formulário Principal -->
-    <form id="anamneseForm" action="https://formsubmit.co/gabismarketing26@gmail.com" method="POST" onsubmit="return validarFormularioFinal(event)">
-        
-        <input type="hidden" name="_subject" id="emailSubject" value="Anamnese - Novo Cadastro">
-        <input type="hidden" name="_template" value="table">
-        <input type="hidden" name="_captcha" value="false">
+    <form id="anamneseForm" action="https://script.google.com/macros/s/AKfycbzrn_SoM8ZtPVsM13nbUdQAJX3JiV82hI_EoG18E2lF6LEMvNEv89zrKzkyNxo9k70v/exec" method="POST" onsubmit="enviarFormularioAPI(event)">
 
         <!-- ETAPA CADASTRAL -->
         <div class="form-step active">
@@ -350,13 +236,12 @@
                 <h2 class="section-title">Dados Cadastrais</h2>
                 <div class="form-field">
                     <label for="nome">Nome e Sobrenome *</label>
-                    <input type="text" id="nome" name="Cadastro_Nome" required oninput="atualizarAssuntoEmail(this.value)">
+                    <input type="text" id="nome" name="Cadastro_Nome" required>
                 </div>
                 <div class="form-field">
                     <label for="whatsapp">WhatsApp *</label>
                     <input type="tel" id="whatsapp" name="Cadastro_WhatsApp" placeholder="(00) 00000-0000" required>
                 </div>
-                <!-- NOVO CAMPO: Nome da empresa ou projeto -->
                 <div class="form-field">
                     <label for="empresa">Nome da empresa ou projeto *</label>
                     <input type="text" id="empresa" name="Cadastro_Empresa_Projeto" required>
@@ -367,7 +252,6 @@
                 </div>
             </div>
             
-            <!-- Bloco de Orientação -->
             <div class="instructions">
                 <p><strong>Como responder seu formulário:</strong></p>
                 <ul>
@@ -376,13 +260,12 @@
                     <li>Separe alguns minutos e leia as perguntas de cada seção com calma e atenção.</li>
                     <li>Selecione no mínimo 3 perguntas de cada seção para responder.</li>
                     <li>Se desejar e conseguir, pode responder todas as perguntas.</li>
-                    <li>Não precisa ter resposta para tudo, mas, quanto mais respostas tiver, mais completo será o nosso primeiro papo.</li>
                 </ul>
-                <p class="final-note">Ao final, suas respostas serão encaminhadas para análise e seguimos com o agendamento da primeira sessão de consultoria presencial ou online.</p>
+                <p class="final-note">Ao final, suas respostas serão encaminhadas para análise e seguimos com o agendamento da primeira sessão de consultoria.</p>
             </div>
         </div>
 
-        <!-- ETAPA 1 -->
+        <!-- SEÇÃO 1 -->
         <div class="form-step">
             <div class="section-card" data-section="1">
                 <h2 class="section-title">
@@ -390,7 +273,6 @@
                     <span class="section-counter">(<span class="count">0</span> de min. 3 selecionadas)</span>
                 </h2>
                 
-                <!-- Pergunta 1.1: Modificada para Única Escolha -->
                 <div class="question-group">
                     <label class="checkbox-label">
                         <input type="checkbox" onchange="toggleResposta(this)"> 1.1 Há quanto tempo o negócio existe?
@@ -408,7 +290,7 @@
 
                 <div class="question-group">
                     <label class="checkbox-label">
-                        <input type="checkbox" onchange="toggleResposta(this)"> 1.2 Qual é o faturamento mensal aproximado?
+                        <input type="checkbox" onchange="toggleResposta(this)"> 1.2 Qual é seu faturamento mensal aproximado?
                     </label>
                     <div class="answer-container">
                         <textarea name="S1_P1.2_Faturamento" placeholder="Digite sua resposta aqui..."></textarea>
@@ -433,23 +315,22 @@
                     </div>
                 </div>
 
-                <!-- Pergunta 1.5: Modificada para Múltipla Escolha -->
                 <div class="question-group">
                     <label class="checkbox-label">
                         <input type="checkbox" onchange="toggleResposta(this)"> 1.5 Qual é seu principal canal de vendas hoje?
                     </label>
                     <div class="answer-container">
                         <div class="options-container">
-                            <label class="checkbox-option"><input type="checkbox" name="S1_P1.5_Canal_Vendas_Multiplo[]" value="Ligação" onchange="atualizarOpcaoMultipla(this)"> Ligação</label>
-                            <label class="checkbox-option"><input type="checkbox" name="S1_P1.5_Canal_Vendas_Multiplo[]" value="Loja física" onchange="atualizarOpcaoMultipla(this)"> Loja física</label>
-                            <label class="checkbox-option"><input type="checkbox" name="S1_P1.5_Canal_Vendas_Multiplo[]" value="Whatsapp" onchange="atualizarOpcaoMultipla(this)"> Whatsapp</label>
-                            <label class="checkbox-option"><input type="checkbox" name="S1_P1.5_Canal_Vendas_Multiplo[]" value="Instagram" onchange="atualizarOpcaoMultipla(this)"> Instagram</label>
-                            <label class="checkbox-option"><input type="checkbox" name="S1_P1.5_Canal_Vendas_Multiplo[]" value="Facebook" onchange="atualizarOpcaoMultipla(this)"> Facebook</label>
-                            <label class="checkbox-option"><input type="checkbox" name="S1_P1.5_Canal_Vendas_Multiplo[]" value="Tiktok" onchange="atualizarOpcaoMultipla(this)"> Tiktok</label>
-                            <label class="checkbox-option"><input type="checkbox" name="S1_P1.5_Canal_Vendas_Multiplo[]" value="LinkedIn" onchange="atualizarOpcaoMultipla(this)"> LinkedIn</label>
-                            <label class="checkbox-option"><input type="checkbox" name="S1_P1.5_Canal_Vendas_Multiplo[]" value="IFood / 99" onchange="atualizarOpcaoMultipla(this)"> IFood / 99</label>
-                            <label class="checkbox-option"><input type="checkbox" name="S1_P1.5_Canal_Vendas_Multiplo[]" value="Plataforma de delivery própria" onchange="atualizarOpcaoMultipla(this)"> Plataforma de delivery própria</label>
-                            <label class="checkbox-option"><input type="checkbox" name="S1_P1.5_Canal_Vendas_Multiplo[]" value="E-commerce: Mercado Livre, Shopee, etc." onchange="atualizarOpcaoMultipla(this)"> E-commerce: Mercado Livre, Shopee, etc.</label>
+                            <label class="checkbox-option"><input type="checkbox" value="Ligação" onchange="atualizarOpcaoMultipla(this)"> Ligação</label>
+                            <label class="checkbox-option"><input type="checkbox" value="Loja física" onchange="atualizarOpcaoMultipla(this)"> Loja física</label>
+                            <label class="checkbox-option"><input type="checkbox" value="Whatsapp" onchange="atualizarOpcaoMultipla(this)"> Whatsapp</label>
+                            <label class="checkbox-option"><input type="checkbox" value="Instagram" onchange="atualizarOpcaoMultipla(this)"> Instagram</label>
+                            <label class="checkbox-option"><input type="checkbox" value="Facebook" onchange="atualizarOpcaoMultipla(this)"> Facebook</label>
+                            <label class="checkbox-option"><input type="checkbox" value="Tiktok" onchange="atualizarOpcaoMultipla(this)"> Tiktok</label>
+                            <label class="checkbox-option"><input type="checkbox" value="LinkedIn" onchange="atualizarOpcaoMultipla(this)"> LinkedIn</label>
+                            <label class="checkbox-option"><input type="checkbox" value="IFood / 99" onchange="atualizarOpcaoMultipla(this)"> IFood / 99</label>
+                            <label class="checkbox-option"><input type="checkbox" value="Plataforma de delivery própria" onchange="atualizarOpcaoMultipla(this)"> Plataforma de delivery própria</label>
+                            <label class="checkbox-option"><input type="checkbox" value="E-commerce" onchange="atualizarOpcaoMultipla(this)"> E-commerce</label>
                         </div>
                         <input type="hidden" name="S1_P1.5_Canal_Vendas" value="">
                     </div>
@@ -457,7 +338,7 @@
 
                 <div class="question-group">
                     <label class="checkbox-label">
-                        <input type="checkbox" onchange="toggleResposta(this)"> 1.6 Qual é seu custo mensal fixo (aluguel, salários, ferramentas, etc)?
+                        <input type="checkbox" onchange="toggleResposta(this)"> 1.6 Qual é seu custo mensal fixo?
                     </label>
                     <div class="answer-container">
                         <textarea name="S1_P1.6_Custo_Fixo" placeholder="Digite sua resposta aqui..."></textarea>
@@ -472,11 +353,11 @@
                         <textarea name="S1_P1.7_Diferencial" placeholder="Digite sua resposta aqui..."></textarea>
                     </div>
                 </div>
-                <div class="error-message">Por favor, selecione e responda pelo menos 3 perguntas nesta seção para poder avançar.</div>
+                <div class="error-message">Por favor, selecione e responda pelo menos 3 perguntas nesta seção.</div>
             </div>
         </div>
 
-        <!-- ETAPA 2 -->
+        <!-- SEÇÃO 2 -->
         <div class="form-step">
             <div class="section-card" data-section="2">
                 <h2 class="section-title">
@@ -513,7 +394,7 @@
 
                 <div class="question-group">
                     <label class="checkbox-label">
-                        <input type="checkbox" onchange="toggleResposta(this)"> 2.4 Qual é o custo de aquisição de cliente (CAC) aproximado?
+                        <input type="checkbox" onchange="toggleResposta(this)"> 2.4 Qual é o custo de aquisição de cliente (CAC)?
                     </label>
                     <div class="answer-container">
                         <textarea name="S2_P2.4_CAC" placeholder="Digite sua resposta aqui..."></textarea>
@@ -531,17 +412,17 @@
 
                 <div class="question-group">
                     <label class="checkbox-label">
-                        <input type="checkbox" onchange="toggleResposta(this)"> 2.6 Você tem feedback direto dos clientes sobre o que melhorar?
+                        <input type="checkbox" onchange="toggleResposta(this)"> 2.6 Você tem feedback direto dos clientes?
                     </label>
                     <div class="answer-container">
                         <textarea name="S2_P2.6_Feedback_Clientes" placeholder="Digite sua resposta aqui..."></textarea>
                     </div>
                 </div>
-                <div class="error-message">Por favor, selecione e responda pelo menos 3 perguntas nesta seção para poder avançar.</div>
+                <div class="error-message">Por favor, selecione e responda pelo menos 3 perguntas nesta seção.</div>
             </div>
         </div>
 
-        <!-- ETAPA 3 -->
+        <!-- SEÇÃO 3 -->
         <div class="form-step">
             <div class="section-card" data-section="3">
                 <h2 class="section-title">
@@ -596,17 +477,17 @@
 
                 <div class="question-group">
                     <label class="checkbox-label">
-                        <input type="checkbox" onchange="toggleResposta(this)"> 3.6 Existe um produto/serviço que você gostaria de destacar mais?
+                        <input type="checkbox" onchange="toggleResposta(this)"> 3.6 Existe um produto/serviço que gostaria de destacar?
                     </label>
                     <div class="answer-container">
                         <textarea name="S3_P3.6_Produto_Destaque" placeholder="Digite sua resposta aqui..."></textarea>
                     </div>
                 </div>
-                <div class="error-message">Por favor, selecione e responda pelo menos 3 perguntas nesta seção para poder avançar.</div>
+                <div class="error-message">Por favor, selecione e responda pelo menos 3 perguntas nesta seção.</div>
             </div>
         </div>
 
-        <!-- ETAPA 4 -->
+        <!-- SEÇÃO 4 -->
         <div class="form-step">
             <div class="section-card" data-section="4">
                 <h2 class="section-title">
@@ -632,18 +513,17 @@
                     </div>
                 </div>
 
-                <!-- Pergunta 4.3: Modificada para Única Escolha -->
                 <div class="question-group">
                     <label class="checkbox-label">
                         <input type="checkbox" onchange="toggleResposta(this)"> 4.3 Qual é seu nível de conhecimento em ferramentas digitais?
                     </label>
                     <div class="answer-container">
                         <div class="options-container">
-                            <label class="radio-option"><input type="radio" name="S4_P4.3_Conhecimento_Digital_Opcao" value="Zero: Só sabe ler as figura" onchange="atualizarOpcaoUnica(this)"> <strong>Zero:</strong> Só sabe ler as figura</label>
-                            <label class="radio-option"><input type="radio" name="S4_P4.3_Conhecimento_Digital_Opcao" value="Baixo: Anota tudo no caderno, só sabe mandar zap" onchange="atualizarOpcaoUnica(this)"> <strong>Baixo:</strong> Anota tudo no caderno, só sabe mandar zap</label>
-                            <label class="radio-option"><input type="radio" name="S4_P4.3_Conhecimento_Digital_Opcao" value="Médio: Sabe usar o navegador de internet, usa planilhas, documentos de texto, cria apresentações, sabe postar conteúdo no zap e algumas coisas no instagram." onchange="atualizarOpcaoUnica(this)"> <strong>Médio:</strong> Sabe usar o navegador de internet, usa planilhas, documentos de texto, cria apresentações, sabe postar conteúdo no zap e algumas coisas no instagram.</label>
-                            <label class="radio-option"><input type="radio" name="S4_P4.3_Conhecimento_Digital_Opcao" value="Alto: Tudo do médio, mas entende das ferramentas da atualidade, faz criações com IA e já tem um escritório digital. Só precisa de ajuda estratégica." onchange="atualizarOpcaoUnica(this)"> <strong>Alto:</strong> Tudo do médio, mas entende das ferramentas da atualidade, faz criações com IA e já tem um escritório digital. Só precisa de ajuda estratégica.</label>
-                            <label class="radio-option"><input type="radio" name="S4_P4.3_Conhecimento_Digital_Opcao" value="Cria: É desenvolvedor/designer. Só precisa de ajuda estratégica." onchange="atualizarOpcaoUnica(this)"> <strong>Cria:</strong> É desenvolvedor/designer. Só precisa de ajuda estratégica.</label>
+                            <label class="radio-option"><input type="radio" name="S4_P4.3_Conhecimento_Digital_Opcao" value="Zero" onchange="atualizarOpcaoUnica(this)"> <strong>Zero:</strong> Só sabe ler as figura</label>
+                            <label class="radio-option"><input type="radio" name="S4_P4.3_Conhecimento_Digital_Opcao" value="Baixo" onchange="atualizarOpcaoUnica(this)"> <strong>Baixo:</strong> Anota tudo no caderno, só sabe mandar zap</label>
+                            <label class="radio-option"><input type="radio" name="S4_P4.3_Conhecimento_Digital_Opcao" value="Médio" onchange="atualizarOpcaoUnica(this)"> <strong>Médio:</strong> Sabe usar o navegador de internet, usa planilhas, documentos de texto, cria apresentações, sabe postar conteúdo no zap e algumas coisas no instagram.</label>
+                            <label class="radio-option"><input type="radio" name="S4_P4.3_Conhecimento_Digital_Opcao" value="Alto" onchange="atualizarOpcaoUnica(this)"> <strong>Alto:</strong> Tudo do médio, mas entende das ferramentas da atualidade, faz criações com IA e já tem um escritório digital. Só precisa de ajuda estratégica.</label>
+                            <label class="radio-option"><input type="radio" name="S4_P4.3_Conhecimento_Digital_Opcao" value="Cria" onchange="atualizarOpcaoUnica(this)"> <strong>Cria:</strong> É desenvolvedor/designer. Só precisa de ajuda estratégica.</label>
                         </div>
                         <input type="hidden" name="S4_P4.3_Conhecimento_Digital" value="">
                     </div>
@@ -651,7 +531,7 @@
 
                 <div class="question-group">
                     <label class="checkbox-label">
-                        <input type="checkbox" onchange="toggleResposta(this)"> 4.4 Você tem alguém na equipe que pode ajudar na implementação?
+                        <input type="checkbox" onchange="toggleResposta(this)"> 4.4 Você tem alguém na equipe que pode ajudar?
                     </label>
                     <div class="answer-container">
                         <textarea name="S4_P4.4_Apoio_Equipe" placeholder="Digite sua resposta aqui..."></textarea>
@@ -675,11 +555,11 @@
                         <textarea name="S4_P4.6_Prazo_Resultados" placeholder="Digite sua resposta aqui..."></textarea>
                     </div>
                 </div>
-                <div class="error-message">Por favor, selecione e responda pelo menos 3 perguntas nesta seção para poder avançar.</div>
+                <div class="error-message">Por favor, selecione e responda pelo menos 3 perguntas nesta seção.</div>
             </div>
         </div>
 
-        <!-- ETAPA 5 -->
+        <!-- SEÇÃO 5 -->
         <div class="form-step">
             <div class="section-card" data-section="5">
                 <h2 class="section-title">
@@ -689,7 +569,7 @@
                 
                 <div class="question-group">
                     <label class="checkbox-label">
-                        <input type="checkbox" onchange="toggleResposta(this)"> 5.1 Quanto VOCÊ custa mensalmente? (despesas fixas, alimentação, lazer, transporte, etc.)
+                        <input type="checkbox" onchange="toggleResposta(this)"> 5.1 Quanto VOCÊ custa mensalmente?
                     </label>
                     <div class="answer-container">
                         <textarea name="S5_P5.1_Custo_Pessoal" placeholder="Digite sua resposta aqui..."></textarea>
@@ -761,7 +641,7 @@
 
                 <div class="question-group">
                     <label class="checkbox-label">
-                        <input type="checkbox" onchange="toggleResposta(this)"> 5.9 Você tempo para descansar e se recuperar?
+                        <input type="checkbox" onchange="toggleResposta(this)"> 5.9 Você tem tempo para descansar e se recuperar?
                     </label>
                     <div class="answer-container">
                         <textarea name="S5_P5.9_Tempo_Descanso" placeholder="Digite sua resposta aqui..."></textarea>
@@ -771,7 +651,7 @@
             </div>
         </div>
 
-        <!-- Área dos Botões Dinâmicos -->
+        <!-- Área dos Botões -->
         <div class="btn-container">
             <button type="button" class="nav-btn prev-btn" id="btnPrev" onclick="mudarEtapa(-1)" style="display: none;">Voltar</button>
             <button type="button" class="nav-btn next-btn" id="btnNext" onclick="mudarEtapa(1)">Avançar</button>
@@ -786,82 +666,47 @@
     const indicadores = document.querySelectorAll(".step-indicator");
     const barraProgresso = document.getElementById("progressBar");
 
-    atualizarInterfaceEtapa();
-
-    function atualizarAssuntoEmail(nome) {
-        const assuntoInput = document.getElementById('emailSubject');
-        if(nome.trim() !== "") {
-            assuntoInput.value = "Anamnese - " + nome;
-        } else {
-            assuntoInput.value = "Anamnese - Novo Cadastro";
-        }
-    }
-
     function toggleResposta(checkbox) {
         const container = checkbox.parentElement.nextElementSibling;
         const textarea = container.querySelector('textarea');
-        const hiddenInput = container.querySelector('input[type="hidden"]');
         
         if (checkbox.checked) {
             container.style.display = 'block';
             if (textarea) textarea.setAttribute('required', 'true');
-            if (hiddenInput) hiddenInput.setAttribute('required', 'true');
         } else {
             container.style.display = 'none';
             if (textarea) {
                 textarea.removeAttribute('required');
                 textarea.value = '';
             }
-            if (hiddenInput) {
-                hiddenInput.removeAttribute('required');
-                hiddenInput.value = '';
-            }
-            
-            // Limpa seleções internas se houver
-            const radios = container.querySelectorAll('input[type="radio"]');
-            radios.forEach(r => r.checked = false);
-            const checkboxes = container.querySelectorAll('input[type="checkbox"]');
-            checkboxes.forEach(c => c.checked = false);
+            const inputs = container.querySelectorAll('input[type="radio"], input[type="checkbox"]');
+            inputs.forEach(i => i.checked = false);
+            const hidden = container.querySelector('input[type="hidden"]');
+            if (hidden) hidden.value = '';
         }
         atualizarContador(checkbox);
     }
 
-    // Gerencia o valor do campo oculto nas perguntas de ÚNICA escolha (radio)
     function atualizarOpcaoUnica(radio) {
         const container = radio.closest('.answer-container');
         const hiddenInput = container.querySelector('input[type="hidden"]');
-        if (hiddenInput) {
-            hiddenInput.value = radio.value;
-        }
+        if (hiddenInput) hiddenInput.value = radio.value;
     }
 
-    // Gerencia o valor do campo oculto nas perguntas de MÚLTIPLA escolha (checkbox interno)
     function atualizarOpcaoMultipla(checkboxInterno) {
         const container = checkboxInterno.closest('.answer-container');
         const hiddenInput = container.querySelector('input[type="hidden"]');
         const marcados = container.querySelectorAll('input[type="checkbox"]:checked');
-        
         let valores = [];
         marcados.forEach(item => valores.push(item.value));
-        
-        if (hiddenInput) {
-            hiddenInput.value = valores.join(', ');
-            if (valores.length > 0) {
-                hiddenInput.removeAttribute('required');
-            } else {
-                hiddenInput.setAttribute('required', 'true');
-            }
-        }
+        if (hiddenInput) hiddenInput.value = valores.join(', ');
     }
 
     function atualizarContador(element) {
         const card = element.closest('.section-card');
         const checkboxesMarcados = card.querySelectorAll('.question-group > label.checkbox-label > input[type="checkbox"]:checked').length;
         const counter = card.querySelector('.count');
-        if(counter) {
-            counter.textContent = checkboxesMarcados;
-        }
-        
+        if(counter) counter.textContent = checkboxesMarcados;
         if (checkboxesMarcados >= 3) {
             const errorMsg = card.querySelector('.error-message');
             if(errorMsg) errorMsg.style.display = 'none';
@@ -869,19 +714,13 @@
     }
 
     function mudarEtapa(direcao) {
-        if (direcao === 1 && !validarEtapaAtual()) {
-            return false;
-        }
+        if (direcao === 1 && !validarEtapaAtual()) return false;
 
         etapas[etapaAtual].classList.remove("active");
         etapaAtual += direcao;
         
-        if (etapaAtual < 0) etapaAtual = 0;
-        if (etapaAtual >= etapas.length) etapaAtual = etapas.length - 1;
-
         etapas[etapaAtual].classList.add("active");
         atualizarInterfaceEtapa();
-        
         window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
@@ -905,37 +744,32 @@
             const numMarcados = card.querySelectorAll('.question-group > label.checkbox-label > input[type="checkbox"]:checked').length;
             const errorMsg = card.querySelector('.error-message');
             
-            // Verifica se as perguntas marcadas possuem alguma opção selecionada nelas
-            let selecoesValidas = true;
-            const hiddensAtivos = card.querySelectorAll('.answer-container[style*="display: block"] input[type="hidden"][required]');
-            hiddensAtivos.forEach(hidden => {
-                if(hidden.value === "") {
-                    selecoesValidas = false;
-                }
+            if (numMarcados < 3) {
+                errorMsg.textContent = "Por favor, selecione e responda pelo menos 3 perguntas nesta seção.";
+                errorMsg.style.display = 'block';
+                return false;
+            }
+            
+            const textareasAtivas = card.querySelectorAll('.answer-container[style*="display: block"] textarea[required]');
+            let caixasPreenchidas = true;
+            textareasAtivas.forEach(txt => {
+                if(txt.value.trim() === "") caixasPreenchidas = false;
             });
 
-            if (numMarcados < 3) {
-                errorMsg.textContent = "Por favor, selecione e responda pelo menos 3 perguntas nesta seção para poder avançar.";
+            if(!caixasPreenchidas) {
+                errorMsg.textContent = "Por favor, responda o campo de texto das perguntas que você marcou.";
                 errorMsg.style.display = 'block';
                 return false;
-            } else if (!selecoesValidas) {
-                errorMsg.textContent = "Por favor, selecione uma opção válida para as perguntas de múltipla escolha marcadas.";
-                errorMsg.style.display = 'block';
-                return false;
-            } else {
-                errorMsg.style.display = 'none';
-                return true;
             }
+
+            errorMsg.style.display = 'none';
+            return true;
         }
         return true;
     }
 
     function atualizarInterfaceEtapa() {
-        if (etapaAtual === 0) {
-            document.getElementById("btnPrev").style.display = "none";
-        } else {
-            document.getElementById("btnPrev").style.display = "block";
-        }
+        document.getElementById("btnPrev").style.display = etapaAtual === 0 ? "none" : "block";
 
         if (etapaAtual === etapas.length - 1) {
             document.getElementById("btnNext").style.display = "none";
@@ -946,27 +780,42 @@
         }
 
         indicadores.forEach((ind, idx) => {
-            if (idx === etapaAtual) {
-                ind.className = "step-indicator active";
-            } else if (idx < etapaAtual) {
-                ind.className = "step-indicator completed";
-            } else {
-                ind.className = "step-indicator";
-            }
+            if (idx === etapaAtual) ind.className = "step-indicator active";
+            else if (idx < etapaAtual) ind.className = "step-indicator completed";
+            else ind.className = "step-indicator";
         });
 
-        const porcentagem = (etapaAtual / (etapas.length - 1)) * 100;
-        barraProgresso.style.width = porcentagem + "%";
+        barraProgresso.style.width = ((etapaAtual / (etapas.length - 1)) * 100) + "%";
     }
 
-    function validarFormularioFinal(event) {
-        if (!validarEtapaAtual()) {
-            event.preventDefault();
-            return false;
+    async function enviarFormularioAPI(event) {
+        event.preventDefault();
+        
+        if (!validarEtapaAtual()) return false;
+
+        const btnSubmit = document.getElementById("btnSubmit");
+        btnSubmit.disabled = true;
+        btnSubmit.textContent = "Enviando...";
+
+        const formulario = document.getElementById("anamneseForm");
+        const formData = new FormData(formulario);
+
+        try {
+            await fetch(formulario.action, {
+                method: "POST",
+                body: formData,
+                mode: "no-cors"
+            });
+            
+            // Redireciona imediatamente assumindo o sucesso devido ao modo no-cors
+            window.location.href = "obrigado.html";
+
+        } catch (error) {
+            alert("Ocorreu um problema ao enviar o diagnóstico. Verifique sua conexão e tente novamente.");
+            btnSubmit.disabled = false;
+            btnSubmit.textContent = "Enviar Diagnóstico";
         }
-        return true;
     }
 </script>
-
 </body>
 </html>
