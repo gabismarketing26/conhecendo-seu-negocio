@@ -202,44 +202,6 @@
         .next-btn, .submit-btn { background-color: var(--primary-color); color: white; }
         .next-btn:hover, .submit-btn:hover { background-color: #1d4ed8; }
 
-        #successScreen {
-            display: none;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            text-align: center;
-            padding: 40px 30px;
-            animation: fadeIn 0.5s ease-in-out;
-        }
-
-        .success-icon { font-size: 50px; color: #10b981; margin-bottom: 20px; }
-        .success-card h2 { color: var(--primary-color); margin: 0 0 10px 0; font-size: 1.6rem; }
-        .success-card p { font-size: 1rem; color: #475569; margin: 0 0 30px 0; line-height: 1.5; }
-        .actions-container { display: flex; flex-direction: column; gap: 12px; }
-        
-        .action-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            padding: 14px;
-            font-weight: bold;
-            font-size: 1rem;
-            border-radius: 6px;
-            text-decoration: none;
-            transition: background 0.2s, transform 0.1s;
-            border: none;
-            cursor: pointer;
-        }
-        .action-btn:active { transform: scale(0.98); }
-        .btn-whatsapp { background-color: #25D366; color: white; }
-        .btn-whatsapp:hover { background-color: #1ebd58; }
-        .btn-instagram { background-color: #E1306C; color: white; }
-        .btn-instagram:hover { background-color: #ca1c54; }
-        .btn-back { background-color: #e2e8f0; color: #475569; margin-top: 10px; }
-        .btn-back:hover { background-color: #cbd5e1; }
-        .icon { width: 20px; height: 20px; fill: currentColor; }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-5px); }
             to { opacity: 1; transform: translateY(0); }
@@ -266,16 +228,15 @@
         <div class="step-indicator">5</div>
     </div>
 
-    <form id="anamneseForm" action="https://formsubmit.co/api/gabismarketing26@gmail.com" method="POST" onsubmit="enviarFormularioAPI(event)">
-        
-        <input type="hidden" name="_subject" id="emailSubject" value="Anamnese - Novo Cadastro">
+    <form id="anamneseForm" action="https://script.google.com/macros/s/AKfycbzrn_SoM8ZtPVsM13nbUdQAJX3JiV82hI_EoG18E2lF6LEMvNEv89zrKzkyNxo9k70v/exec" method="POST" onsubmit="enviarFormularioAPI(event)">
 
+        <!-- ETAPA CADASTRAL -->
         <div class="form-step active">
             <div class="section-card">
                 <h2 class="section-title">Dados Cadastrais</h2>
                 <div class="form-field">
                     <label for="nome">Nome e Sobrenome *</label>
-                    <input type="text" id="nome" name="Cadastro_Nome" required oninput="atualizarAssuntoEmail(this.value)">
+                    <input type="text" id="nome" name="Cadastro_Nome" required>
                 </div>
                 <div class="form-field">
                     <label for="whatsapp">WhatsApp *</label>
@@ -304,6 +265,7 @@
             </div>
         </div>
 
+        <!-- SEÇÃO 1 -->
         <div class="form-step">
             <div class="section-card" data-section="1">
                 <h2 class="section-title">
@@ -395,6 +357,7 @@
             </div>
         </div>
 
+        <!-- SEÇÃO 2 -->
         <div class="form-step">
             <div class="section-card" data-section="2">
                 <h2 class="section-title">
@@ -459,6 +422,7 @@
             </div>
         </div>
 
+        <!-- SEÇÃO 3 -->
         <div class="form-step">
             <div class="section-card" data-section="3">
                 <h2 class="section-title">
@@ -523,6 +487,7 @@
             </div>
         </div>
 
+        <!-- SEÇÃO 4 -->
         <div class="form-step">
             <div class="section-card" data-section="4">
                 <h2 class="section-title">
@@ -594,6 +559,7 @@
             </div>
         </div>
 
+        <!-- SEÇÃO 5 -->
         <div class="form-step">
             <div class="section-card" data-section="5">
                 <h2 class="section-title">
@@ -685,32 +651,13 @@
             </div>
         </div>
 
+        <!-- Área dos Botões -->
         <div class="btn-container">
             <button type="button" class="nav-btn prev-btn" id="btnPrev" onclick="mudarEtapa(-1)" style="display: none;">Voltar</button>
             <button type="button" class="nav-btn next-btn" id="btnNext" onclick="mudarEtapa(1)">Avançar</button>
             <button type="submit" class="nav-btn submit-btn" id="btnSubmit" style="display: none;">Enviar Diagnóstico</button>
         </div>
     </form>
-
-    <div id="successScreen">
-        <div class="success-card">
-            <div class="success-icon">✓</div>
-            <h2>Diagnóstico Enviado com Sucesso!</h2>
-            <p>Suas respostas foram registradas e sincronizadas com o painel. Agora escolha uma das opções abaixo para prosseguirmos.</p>
-            
-            <div class="actions-container">
-                <a href="https://api.whatsapp.com/send?phone=5521967141614&text=Oi,%20Gabi!%20Finalizei%20seu%20formul%C3%A1rio%20e%20quero%20agendar%20a%20nossa%20primeira%20reuni%C3%A3o%20de%20consultoria" target="_blank" class="action-btn btn-whatsapp">
-                    Agendar via WhatsApp
-                </a>
-                <a href="https://www.instagram.com/gabismarketing/" target="_blank" class="action-btn btn-instagram">
-                    Seguir no Instagram
-                </a>
-                <button type="button" class="action-btn btn-back" onclick="reiniciarFormulario()">
-                    Voltar ao Início
-                </button>
-            </div>
-        </div>
-    </div>
 </div>
 
 <script>
@@ -718,11 +665,6 @@
     const etapas = document.querySelectorAll(".form-step");
     const indicadores = document.querySelectorAll(".step-indicator");
     const barraProgresso = document.getElementById("progressBar");
-
-    function atualizarAssuntoEmail(nome) {
-        const assuntoInput = document.getElementById('emailSubject');
-        assuntoInput.value = nome.trim() !== "" ? "Anamnese - " + nome : "Anamnese - Novo Cadastro";
-    }
 
     function toggleResposta(checkbox) {
         const container = checkbox.parentElement.nextElementSibling;
@@ -808,7 +750,6 @@
                 return false;
             }
             
-            // Valida se os campos ativos de texto estão preenchidos
             const textareasAtivas = card.querySelectorAll('.answer-container[style*="display: block"] textarea[required]');
             let caixasPreenchidas = true;
             textareasAtivas.forEach(txt => {
@@ -847,35 +788,33 @@
         barraProgresso.style.width = ((etapaAtual / (etapas.length - 1)) * 100) + "%";
     }
 
-  async function enviarFormularioAPI(event) {
-    event.preventDefault();
-    
-    if (!validarEtapaAtual()) return false;
-
-    const btnSubmit = document.getElementById("btnSubmit");
-    btnSubmit.disabled = true;
-    btnSubmit.textContent = "Enviando...";
-
-    const formulario = document.getElementById("anamneseForm");
-    const formData = new FormData(formulario);
-
-    try {
-        const resposta = await fetch(formulario.action, {
-            method: "POST",
-            body: formData,
-            headers: { 'Accept': 'application/json' }
-        });
+    async function enviarFormularioAPI(event) {
+        event.preventDefault();
         
-        if(resposta.ok) {
-            // Redireciona para a página de agradecimento na mesma pasta
+        if (!validarEtapaAtual()) return false;
+
+        const btnSubmit = document.getElementById("btnSubmit");
+        btnSubmit.disabled = true;
+        btnSubmit.textContent = "Enviando...";
+
+        const formulario = document.getElementById("anamneseForm");
+        const formData = new FormData(formulario);
+
+        try {
+            await fetch(formulario.action, {
+                method: "POST",
+                body: formData,
+                mode: "no-cors"
+            });
+            
+            // Redireciona imediatamente assumindo o sucesso devido ao modo no-cors
             window.location.href = "obrigado.html";
-        } else {
-            throw new Error("Erro no servidor");
+
+        } catch (error) {
+            alert("Ocorreu um problema ao enviar o diagnóstico. Verifique sua conexão e tente novamente.");
+            btnSubmit.disabled = false;
+            btnSubmit.textContent = "Enviar Diagnóstico";
         }
-    } catch (error) {
-        alert("Ocorreu um problema ao enviar o diagnóstico. Verifique sua conexão e tente novamente.");
-        btnSubmit.disabled = false;
-        btnSubmit.textContent = "Enviar Diagnóstico";
     }
 </script>
 </body>
