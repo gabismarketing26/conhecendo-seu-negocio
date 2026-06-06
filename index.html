@@ -343,6 +343,9 @@
         <input type="hidden" name="_subject" id="emailSubject" value="Anamnese - Novo Cadastro">
         <input type="hidden" name="_template" value="table">
         <input type="hidden" name="_captcha" value="false">
+        
+        <!-- Redirecionamento dinâmico configurado no Script abaixo -->
+        <input type="hidden" name="_next" id="nextUrl" value="">
 
         <!-- ETAPA CADASTRAL -->
         <div class="form-step active">
@@ -356,7 +359,6 @@
                     <label for="whatsapp">WhatsApp *</label>
                     <input type="tel" id="whatsapp" name="Cadastro_WhatsApp" placeholder="(00) 00000-0000" required>
                 </div>
-                <!-- NOVO CAMPO: Nome da empresa ou projeto -->
                 <div class="form-field">
                     <label for="empresa">Nome da empresa ou projeto *</label>
                     <input type="text" id="empresa" name="Cadastro_Empresa_Projeto" required>
@@ -390,7 +392,6 @@
                     <span class="section-counter">(<span class="count">0</span> de min. 3 selecionadas)</span>
                 </h2>
                 
-                <!-- Pergunta 1.1: Modificada para Única Escolha -->
                 <div class="question-group">
                     <label class="checkbox-label">
                         <input type="checkbox" onchange="toggleResposta(this)"> 1.1 Há quanto tempo o negócio existe?
@@ -408,7 +409,7 @@
 
                 <div class="question-group">
                     <label class="checkbox-label">
-                        <input type="checkbox" onchange="toggleResposta(this)"> 1.2 Qual é o faturamento mensal aproximado?
+                        <input type="checkbox" onchange="toggleResposta(this)"> 1.2 Qual é seu faturamento mensal aproximado?
                     </label>
                     <div class="answer-container">
                         <textarea name="S1_P1.2_Faturamento" placeholder="Digite sua resposta aqui..."></textarea>
@@ -433,7 +434,6 @@
                     </div>
                 </div>
 
-                <!-- Pergunta 1.5: Modificada para Múltipla Escolha -->
                 <div class="question-group">
                     <label class="checkbox-label">
                         <input type="checkbox" onchange="toggleResposta(this)"> 1.5 Qual é seu principal canal de vendas hoje?
@@ -632,7 +632,6 @@
                     </div>
                 </div>
 
-                <!-- Pergunta 4.3: Modificada para Única Escolha -->
                 <div class="question-group">
                     <label class="checkbox-label">
                         <input type="checkbox" onchange="toggleResposta(this)"> 4.3 Qual é seu nível de conhecimento em ferramentas digitais?
@@ -786,7 +785,98 @@
     const indicadores = document.querySelectorAll(".step-indicator");
     const barraProgresso = document.getElementById("progressBar");
 
-    atualizarInterfaceEtapa();
+    // Configura a URL de redirecionamento dinâmico baseado no endereço atual do formulário
+    document.addEventListener("DOMContentLoaded", function() {
+        const urlFormularioOriginal = window.location.href.split('#')[0];
+        
+        // Criando a página final em formato HTML estruturado para o FormSubmit redirecionar
+        const htmlPaginaSucesso = `
+        <!DOCTYPE html>
+        <html lang="pt-BR">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Diagnóstico Enviado!</title>
+            <style>
+                body { font-family: -apple-system, sans-serif; background-color: #f8fafc; color: #1e293b; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; padding: 20px; box-sizing: border-box; }
+                .success-card { background: white; max-width: 500px; width: 100%; text-align: center; padding: 40px 30px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.08); }
+                .success-icon { font-size: 50px; color: #10b981; margin-bottom: 20px; }
+                h1 { color: #1e3a8a; margin: 0 0 10px 0; font-size: 1.6rem; }
+                p { font-size: 1rem; color: #475569; margin: 0 0 30px 0; line-height: 1.5; }
+                .actions-container { display: flex; flex-direction: column; gap: 12px; }
+                .action-btn { display: flex; align-items: center; justify-content: center; gap: 10px; padding: 14px; font-weight: bold; font-size: 1rem; border-radius: 6px; text-decoration: none; transition: background 0.2s, transform 0.1s; border: none; cursor: pointer; }
+                .action-btn:active { transform: scale(0.98); }
+                .btn-whatsapp { background-color: #25D366; color: white; }
+                .btn-whatsapp:hover { background-color: #1ebd58; }
+                .btn-instagram { background-color: #E1306C; color: white; }
+                .btn-instagram:hover { background-color: #ca1c54; }
+                .btn-back { background-color: #e2e8f0; color: #475569; margin-top: 10px; }
+                .btn-back:hover { background-color: #cbd5e1; }
+                .icon { width: 20px; height: 20px; fill: currentColor; }
+            </style>
+        </head>
+        <body>
+            <div class="success-card">
+                <div class="success-icon">✓</div>
+                <h1>Diagnóstico Enviado com Sucesso!</h1>
+                <p>Suas respostas foram registradas. Agora escolha uma das opções abaixo para prosseguirmos.</p>
+                
+                <div class="actions-container">
+                    <!-- Botão WhatsApp com API oficial e mensagem predefinida -->
+                    <a href="https://api.whatsapp.com/send?phone=5521967141614&text=Oi,%20Gabi!%20Finalizei%20seu%20formul%C3%A1rio%20e%20quero%20agendar%20a%20nossa%20primeira%20reuni%C3%A3o%20de%20consultoria" target="_blank" class="action-btn btn-whatsapp">
+                        <!-- Ícone vetorial do WhatsApp -->
+                        <svg class="icon" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.003 5.372 5.378 0 12.013 0c3.213.012 6.237 1.266 8.512 3.545 2.275 2.28 3.522 5.305 3.517 8.514-.005 6.641-5.38 12.013-12.014 12.013-1.996-.002-3.96-.5-5.717-1.448L0 24zm6.59-4.846c1.6.95 3.498 1.45 5.425 1.451 5.408 0 9.809-4.401 9.813-9.813.001-2.623-1.02-5.088-2.871-6.942-1.852-1.854-4.318-2.873-6.94-2.873-5.41 0-9.811 4.401-9.815 9.813-.001 1.93.501 3.818 1.456 5.416l-.982 3.585 3.674-.963zm13.044-8.563c-.3-.15-1.771-.875-2.04-.972-.269-.099-.465-.148-.659.15s-.752.972-.922 1.167c-.17.195-.341.213-.64.064-.3-.15-1.27-.469-2.419-1.494-.893-.797-1.495-1.783-1.67-2.083-.174-.3-.019-.461.13-.61.135-.133.3-.349.45-.523.15-.174.2-.299.3-.499.1-.2.05-.375-.025-.524-.075-.15-.659-1.591-.902-2.174-.237-.574-.48-.496-.659-.506-.171-.008-.368-.01-.565-.01-.197 0-.518.074-.789.374-.271.3-1.034 1.012-1.034 2.467 0 1.455 1.059 2.862 1.207 3.062.149.2 2.083 3.18 5.047 4.458.705.304 1.256.485 1.685.623.712.227 1.359.195 1.871.118.571-.085 1.771-.724 2.022-1.424.252-.699.252-1.299.176-1.424-.076-.124-.272-.199-.572-.349z"/></svg>
+                        Agendar via WhatsApp
+                    </a>
+                    
+                    <!-- Botão Instagram -->
+                    <a href="https://www.instagram.com/gabismarketing/" target="_blank" class="action-btn btn-instagram">
+                        <!-- Ícone vetorial do Instagram -->
+                        <svg class="icon" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                        Seguir no Instagram
+                    </a>
+                    
+                    <!-- Botão Voltar Corrigido -->
+                    <a href="${urlFormularioOriginal}" class="action-btn btn-back">
+                        Voltar ao Início
+                    </a>
+                </div>
+            </div>
+        </body>
+        </html>`;
+
+        // Transforma o HTML da página de sucesso em uma string base64 segura para o atributo _next
+        document.getElementById("nextUrl").value = "data:text/html;charset=utf-8;base64," + btoa(unescape(encodeURIComponent(htmlPaginaSucesso)));
+    });
+
+    function atualizarInterfaceEtapa() {
+        if (etapaAtual === 0) {
+            document.getElementById("btnPrev").style.display = "none";
+        } else {
+            document.getElementById("btnPrev").style.display = "block";
+        }
+
+        if (etapaAtual === etapas.length - 1) {
+            document.getElementById("btnNext").style.display = "none";
+            document.getElementById("btnSubmit").style.display = "block";
+        } else {
+            document.getElementById("btnNext").style.display = "block";
+            document.getElementById("btnSubmit").style.display = "none";
+        }
+
+        indicadores.forEach((ind, idx) => {
+            if (idx === etapaAtual) {
+                ind.className = "step-indicator active";
+            } else if (idx < etapaAtual) {
+                ind.className = "step-indicator completed";
+            } else {
+                ind.className = "step-indicator";
+            }
+        });
+
+        const porcentagem = (etapaAtual / (etapas.length - 1)) * 100;
+        barraProgresso.style.width = porcentagem + "%";
+    }
 
     function atualizarAssuntoEmail(nome) {
         const assuntoInput = document.getElementById('emailSubject');
@@ -817,7 +907,6 @@
                 hiddenInput.value = '';
             }
             
-            // Limpa seleções internas se houver
             const radios = container.querySelectorAll('input[type="radio"]');
             radios.forEach(r => r.checked = false);
             const checkboxes = container.querySelectorAll('input[type="checkbox"]');
@@ -826,7 +915,6 @@
         atualizarContador(checkbox);
     }
 
-    // Gerencia o valor do campo oculto nas perguntas de ÚNICA escolha (radio)
     function atualizarOpcaoUnica(radio) {
         const container = radio.closest('.answer-container');
         const hiddenInput = container.querySelector('input[type="hidden"]');
@@ -835,7 +923,6 @@
         }
     }
 
-    // Gerencia o valor do campo oculto nas perguntas de MÚLTIPLA escolha (checkbox interno)
     function atualizarOpcaoMultipla(checkboxInterno) {
         const container = checkboxInterno.closest('.answer-container');
         const hiddenInput = container.querySelector('input[type="hidden"]');
@@ -905,7 +992,6 @@
             const numMarcados = card.querySelectorAll('.question-group > label.checkbox-label > input[type="checkbox"]:checked').length;
             const errorMsg = card.querySelector('.error-message');
             
-            // Verifica se as perguntas marcadas possuem alguma opção selecionada nelas
             let selecoesValidas = true;
             const hiddensAtivos = card.querySelectorAll('.answer-container[style*="display: block"] input[type="hidden"][required]');
             hiddensAtivos.forEach(hidden => {
@@ -928,35 +1014,6 @@
             }
         }
         return true;
-    }
-
-    function atualizarInterfaceEtapa() {
-        if (etapaAtual === 0) {
-            document.getElementById("btnPrev").style.display = "none";
-        } else {
-            document.getElementById("btnPrev").style.display = "block";
-        }
-
-        if (etapaAtual === etapas.length - 1) {
-            document.getElementById("btnNext").style.display = "none";
-            document.getElementById("btnSubmit").style.display = "block";
-        } else {
-            document.getElementById("btnNext").style.display = "block";
-            document.getElementById("btnSubmit").style.display = "none";
-        }
-
-        indicadores.forEach((ind, idx) => {
-            if (idx === etapaAtual) {
-                ind.className = "step-indicator active";
-            } else if (idx < etapaAtual) {
-                ind.className = "step-indicator completed";
-            } else {
-                ind.className = "step-indicator";
-            }
-        });
-
-        const porcentagem = (etapaAtual / (etapas.length - 1)) * 100;
-        barraProgresso.style.width = porcentagem + "%";
     }
 
     function validarFormularioFinal(event) {
