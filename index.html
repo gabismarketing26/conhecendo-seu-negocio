@@ -40,845 +40,795 @@
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
 
-        .logo-placeholder {
-            width: 120px;
-            height: 50px;
-            background-color: #e2e8f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 14px;
-            color: #64748b;
-            border-radius: 4px;
-            font-weight: bold;
+        .logo {
+            width: 160px;
+            height: 160px;
+            object-fit: contain;
         }
 
         h1 {
-            font-size: 24px;
             color: var(--primary-color);
             margin: 0;
-        }
-
-        p.subtitle {
-            color: #64748b;
-            margin: 0;
-            font-size: 15px;
-        }
-
-        /* Progresso Geral Fixo no Topo */
-        .progress-sticky {
-            position: sticky;
-            top: 0;
-            background: var(--bg-color);
-            padding: 10px 0 20px 0;
-            z-index: 100;
+            font-size: 1.8rem;
         }
 
         .progress-container {
             display: flex;
-            align-items: center;
             justify-content: space-between;
-            background: var(--card-bg);
-            padding: 15px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            gap: 10px;
-        }
-
-        .progress-bar-wrapper {
-            flex-grow: 1;
-            height: 8px;
-            background: #e2e8f0;
-            border-radius: 4px;
-            overflow: hidden;
+            margin-bottom: 25px;
             position: relative;
+        }
+        
+        .progress-container::before {
+            content: "";
+            background-color: #e2e8f0;
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            height: 4px;
+            width: 100%;
+            z-index: 1;
         }
 
         .progress-bar {
-            height: 100%;
-            background: var(--primary-color);
+            position: absolute;
+            top: 50%;
+            left: 0;
+            transform: translateY(-50%);
+            height: 4px;
             width: 0%;
-            transition: width 0.3s ease;
-        }
-
-        .step-indicators {
-            display: flex;
-            gap: 6px;
+            background-color: var(--primary-color);
+            z-index: 1;
+            transition: width 0.4s ease;
         }
 
         .step-indicator {
-            width: 12px;
-            height: 12px;
+            width: 30px;
+            height: 30px;
+            background-color: #e2e8f0;
             border-radius: 50%;
-            background: #e2e8f0;
-            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.85rem;
+            color: #64748b;
+            z-index: 2;
+            transition: all 0.4s ease;
         }
 
         .step-indicator.active {
-            background: var(--primary-color);
-            transform: scale(1.1);
+            background-color: var(--primary-color);
+            color: white;
+            box-shadow: 0 0 0 4px rgba(30, 58, 138, 0.2);
         }
 
         .step-indicator.completed {
-            background: #10b981;
+            background-color: #10b981;
+            color: white;
         }
 
-        /* Cards de Etapas */
+        .instructions {
+            background-color: #eff6ff;
+            border-left: 4px solid var(--primary-color);
+            padding: 20px;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+        }
+
+        .instructions p { margin: 0 0 10px 0; }
+        .instructions ul { margin: 0 0 15px 0; padding-left: 20px; }
+        .instructions li { margin-bottom: 8px; }
+        .instructions .final-note { margin-bottom: 0; font-weight: 500; }
+
         .form-step {
             display: none;
-            background: var(--card-bg);
-            padding: 30px;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-            margin-bottom: 25px;
-            animation: fadeIn 0.4s ease;
+            opacity: 0;
+            transform: translateX(20px);
+            transition: opacity 0.4s ease, transform 0.4s ease;
         }
 
         .form-step.active {
             display: block;
+            opacity: 1;
+            transform: translateX(0);
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        h2 {
-            font-size: 20px;
-            margin-top: 0;
-            margin-bottom: 20px;
-            color: var(--primary-color);
-            border-bottom: 2px solid #f1f5f9;
-            padding-bottom: 10px;
-        }
-
-        .form-group {
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 8px;
+            padding: 25px;
             margin-bottom: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
         }
 
-        .form-group:last-child {
-            margin-bottom: 0;
+        .section-title {
+            font-size: 1.15rem;
+            color: var(--primary-color);
+            margin-top: 0;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
-        label {
-            display: block;
-            font-weight: 600;
-            margin-bottom: 8px;
-            font-size: 15px;
+        .section-counter {
+            font-size: 0.85rem;
+            color: #64748b;
+            font-weight: normal;
+            float: right;
+            text-transform: none;
         }
 
-        input[type="text"],
-        input[type="email"],
-        textarea {
+        .form-field { margin-bottom: 15px; }
+        .form-field label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 0.9rem; }
+        .form-field input { width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; box-sizing: border-box; font-family: inherit; }
+        .form-field input:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1); }
+
+        .question-group { margin-bottom: 20px; }
+        .checkbox-label { display: flex; align-items: flex-start; cursor: pointer; font-weight: 500; }
+        .checkbox-label input[type="checkbox"] { margin-top: 5px; margin-right: 12px; transform: scale(1.1); }
+
+        .answer-container {
+            display: none;
+            margin-top: 10px;
+            margin-left: 28px;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .options-container { display: flex; flex-direction: column; gap: 10px; margin-top: 8px; padding: 5px 0; }
+        .radio-option, .checkbox-option { display: flex; align-items: flex-start; cursor: pointer; font-size: 0.95rem; font-weight: normal; }
+        .radio-option input, .checkbox-option input { margin-top: 4px; margin-right: 10px; }
+
+        .answer-container textarea {
             width: 100%;
-            padding: 12px;
+            min-height: 80px;
+            padding: 10px;
             border: 1px solid var(--border-color);
             border-radius: 6px;
-            font-size: 15px;
+            resize: vertical;
             box-sizing: border-box;
-            transition: border-color 0.2s;
-            background-color: #fff;
+            font-family: inherit;
         }
+        .answer-container textarea:focus { outline: none; border-color: var(--primary-color); box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1); }
 
-        input:focus, textarea:focus {
-            outline: none;
-            border-color: var(--primary-color);
-            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.1);
-        }
+        .btn-container { display: flex; gap: 15px; margin-top: 30px; }
+        .nav-btn { flex: 1; padding: 15px; font-size: 1.05rem; font-weight: bold; border-radius: 6px; cursor: pointer; transition: all 0.2s; border: none; }
+        .prev-btn { background-color: #e2e8f0; color: #475569; }
+        .prev-btn:hover { background-color: #cbd5e1; }
+        .next-btn, .submit-btn { background-color: var(--primary-color); color: white; }
+        .next-btn:hover, .submit-btn:hover { background-color: #1d4ed8; }
 
-        /* Contador de caracteres */
-        .char-counter {
-            text-align: right;
-            font-size: 12px;
-            color: #64748b;
-            margin-top: 4px;
-        }
-
-        /* Container condicional de respostas explicativas */
-        .answer-container {
-            margin-top: 15px;
+        #successScreen {
             display: none;
-            animation: slideDown 0.3s ease;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            text-align: center;
+            padding: 40px 30px;
+            animation: fadeIn 0.5s ease-in-out;
         }
 
-        @keyframes slideDown {
+        .success-icon { font-size: 50px; color: #10b981; margin-bottom: 20px; }
+        .success-card h2 { color: var(--primary-color); margin: 0 0 10px 0; font-size: 1.6rem; }
+        .success-card p { font-size: 1rem; color: #475569; margin: 0 0 30px 0; line-height: 1.5; }
+        .actions-container { display: flex; flex-direction: column; gap: 12px; }
+        
+        .action-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px;
+            font-weight: bold;
+            font-size: 1rem;
+            border-radius: 6px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.1s;
+            border: none;
+            cursor: pointer;
+        }
+        .action-btn:active { transform: scale(0.98); }
+        .btn-whatsapp { background-color: #25D366; color: white; }
+        .btn-whatsapp:hover { background-color: #1ebd58; }
+        .btn-instagram { background-color: #E1306C; color: white; }
+        .btn-instagram:hover { background-color: #ca1c54; }
+        .btn-back { background-color: #e2e8f0; color: #475569; margin-top: 10px; }
+        .btn-back:hover { background-color: #cbd5e1; }
+        .icon { width: 20px; height: 20px; fill: currentColor; }
+
+        @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-5px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        .answer-container label {
-            font-weight: 500;
-            color: #475569;
-            font-size: 14px;
-        }
-
-        /* Opções de Seleção Única Estilizadas */
-        .options-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 10px;
-        }
-
-        .option-card {
-            border: 1px solid var(--border-color);
-            border-radius: 6px;
-            padding: 14px;
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            background: #fff;
-        }
-
-        .option-card:hover {
-            border-color: var(--primary-color);
-            background-color: #f8fafc;
-        }
-
-        .option-card.selected {
-            border-color: var(--primary-color);
-            background-color: rgba(30, 58, 138, 0.05);
-            font-weight: 600;
-        }
-
-        .option-card input[type="radio"] {
-            margin: 0;
-            width: 18px;
-            height: 18px;
-            accent-color: var(--primary-color);
-        }
-
-        /* Botões de Navegação */
-        .navigation-row {
-            display: flex;
-            justify-content: space-between;
-            gap: 15px;
-        }
-
-        button {
-            padding: 14px 24px;
-            font-size: 16px;
-            font-weight: 600;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: all 0.2s;
-            border: none;
-            flex: 1;
-        }
-
-        .btn-secondary {
-            background-color: #e2e8f0;
-            color: #475569;
-        }
-
-        .btn-secondary:hover {
-            background-color: #cbd5e1;
-        }
-
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: #white;
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: #1d4ed8;
-        }
-
-        button:disabled {
-            background-color: #cbd5e1;
-            color: #94a3b8;
-            cursor: not-allowed;
-        }
+        .error-message { color: #dc2626; font-size: 0.85rem; margin-top: 5px; display: none; }
     </style>
 </head>
 <body>
 
-<div class="container">
+<div class="container" id="mainContainer">
     <header>
-        <div class="logo-placeholder">SUA LOGO</div>
-        <h1>Anamnese Operacional & Estratégica</h1>
-        <p class="subtitle">Descubra os gargalos do seu negócio e desenhe o caminho para a escala digital.</p>
+        <img src="Gemini_Generated_Image_efqt1befqt1befqt.png" alt="Gabi's Marketing Logo" class="logo">
+        <h1>Anamnese: Diagnóstico do Seu Negócio</h1>
     </header>
 
-    <div class="progress-sticky" id="progressoGeral">
-        <div class="progress-container">
-            <div class="progress-bar-wrapper">
-                <div class="progress-bar" id="progressBar"></div>
+    <div class="progress-container" id="progressoGeral">
+        <div class="progress-bar" id="progressBar"></div>
+        <div class="step-indicator active">★</div>
+        <div class="step-indicator">1</div>
+        <div class="step-indicator">2</div>
+        <div class="step-indicator">3</div>
+        <div class="step-indicator">4</div>
+        <div class="step-indicator">5</div>
+    </div>
+
+    <form id="anamneseForm" action="https://formsubmit.co/api/gabismarketing26@gmail.com" method="POST" onsubmit="enviarFormularioAPI(event)">
+        
+        <input type="hidden" name="_subject" id="emailSubject" value="Anamnese - Novo Cadastro">
+
+        <div class="form-step active">
+            <div class="section-card">
+                <h2 class="section-title">Dados Cadastrais</h2>
+                <div class="form-field">
+                    <label for="nome">Nome e Sobrenome *</label>
+                    <input type="text" id="nome" name="Cadastro_Nome" required oninput="atualizarAssuntoEmail(this.value)">
+                </div>
+                <div class="form-field">
+                    <label for="whatsapp">WhatsApp *</label>
+                    <input type="tel" id="whatsapp" name="Cadastro_WhatsApp" placeholder="(00) 00000-0000" required>
+                </div>
+                <div class="form-field">
+                    <label for="empresa">Nome da empresa ou projeto *</label>
+                    <input type="text" id="empresa" name="Cadastro_Empresa_Projeto" required>
+                </div>
+                <div class="form-field">
+                    <label for="email">E-mail *</label>
+                    <input type="email" id="email" name="Cadastro_Email" required>
+                </div>
             </div>
-            <div class="step-indicators" id="stepIndicators">
-                <div class="step-indicator active"></div>
-                <div class="step-indicator"></div>
-                <div class="step-indicator"></div>
-                <div class="step-indicator"></div>
-                <div class="step-indicator"></div>
-                <div class="step-indicator"></div>
+            
+            <div class="instructions">
+                <p><strong>Como responder seu formulário:</strong></p>
+                <ul>
+                    <li>O formulário é dividido em 5 temas com perguntas iniciais para conhecer e entender melhor sobre a sua necessidade atual.</li>
+                    <li>Garanta estar em um ambiente confortável para responder as perguntas.</li>
+                    <li>Separe alguns minutos e leia as perguntas de cada seção com calma e atenção.</li>
+                    <li>Selecione no mínimo 3 perguntas de cada seção para responder.</li>
+                    <li>Se desejar e conseguir, pode responder todas as perguntas.</li>
+                </ul>
+                <p class="final-note">Ao final, suas respostas serão encaminhadas para análise e seguimos com o agendamento da primeira sessão de consultoria.</p>
+            </div>
+        </div>
+
+        <div class="form-step">
+            <div class="section-card" data-section="1">
+                <h2 class="section-title">
+                    SEÇÃO 1: SITUAÇÃO ATUAL
+                    <span class="section-counter">(<span class="count">0</span> de min. 3 selecionadas)</span>
+                </h2>
+                
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 1.1 Há quanto tempo o negócio existe?
+                    </label>
+                    <div class="answer-container">
+                        <div class="options-container">
+                            <label class="radio-option"><input type="radio" name="S1_P1.1_Tempo_Negocio_Opcao" value="Entre 6 meses e 1 ano" onchange="atualizarOpcaoUnica(this)"> Entre 6 meses e 1 ano</label>
+                            <label class="radio-option"><input type="radio" name="S1_P1.1_Tempo_Negocio_Opcao" value="Entre 2 e 5 anos" onchange="atualizarOpcaoUnica(this)"> Entre 2 e 5 anos</label>
+                            <label class="radio-option"><input type="radio" name="S1_P1.1_Tempo_Negocio_Opcao" value="Entre 5 e 10 anos" onchange="atualizarOpcaoUnica(this)"> Entre 5 e 10 anos</label>
+                            <label class="radio-option"><input type="radio" name="S1_P1.1_Tempo_Negocio_Opcao" value="Mais de 10 anos" onchange="atualizarOpcaoUnica(this)"> Mais de 10 anos</label>
+                        </div>
+                        <input type="hidden" name="S1_P1.1_Tempo_Negocio" value="">
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 1.2 Qual é seu faturamento mensal aproximado?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S1_P1.2_Faturamento" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 1.3 Qual é sua margem de lucro aproximada?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S1_P1.3_Margem_Lucro" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 1.4 Quantas pessoas trabalham com você?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S1_P1.4_Equipe" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 1.5 Qual é seu principal canal de vendas hoje?
+                    </label>
+                    <div class="answer-container">
+                        <div class="options-container">
+                            <label class="checkbox-option"><input type="checkbox" value="Ligação" onchange="atualizarOpcaoMultipla(this)"> Ligação</label>
+                            <label class="checkbox-option"><input type="checkbox" value="Loja física" onchange="atualizarOpcaoMultipla(this)"> Loja física</label>
+                            <label class="checkbox-option"><input type="checkbox" value="Whatsapp" onchange="atualizarOpcaoMultipla(this)"> Whatsapp</label>
+                            <label class="checkbox-option"><input type="checkbox" value="Instagram" onchange="atualizarOpcaoMultipla(this)"> Instagram</label>
+                            <label class="checkbox-option"><input type="checkbox" value="Facebook" onchange="atualizarOpcaoMultipla(this)"> Facebook</label>
+                            <label class="checkbox-option"><input type="checkbox" value="Tiktok" onchange="atualizarOpcaoMultipla(this)"> Tiktok</label>
+                            <label class="checkbox-option"><input type="checkbox" value="LinkedIn" onchange="atualizarOpcaoMultipla(this)"> LinkedIn</label>
+                            <label class="checkbox-option"><input type="checkbox" value="IFood / 99" onchange="atualizarOpcaoMultipla(this)"> IFood / 99</label>
+                            <label class="checkbox-option"><input type="checkbox" value="Plataforma de delivery própria" onchange="atualizarOpcaoMultipla(this)"> Plataforma de delivery própria</label>
+                            <label class="checkbox-option"><input type="checkbox" value="E-commerce" onchange="atualizarOpcaoMultipla(this)"> E-commerce</label>
+                        </div>
+                        <input type="hidden" name="S1_P1.5_Canal_Vendas" value="">
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 1.6 Qual é seu custo mensal fixo?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S1_P1.6_Custo_Fixo" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 1.7 Você tem um diferencial claro em relação aos concorrentes?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S1_P1.7_Diferencial" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+                <div class="error-message">Por favor, selecione e responda pelo menos 3 perguntas nesta seção.</div>
+            </div>
+        </div>
+
+        <div class="form-step">
+            <div class="section-card" data-section="2">
+                <h2 class="section-title">
+                    SEÇÃO 2: DORES E DESAFIOS
+                    <span class="section-counter">(<span class="count">0</span> de min. 3 selecionadas)</span>
+                </h2>
+                
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 2.1 Qual é seu maior desafio operacional agora?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S2_P2.1_Desafio_Operacional" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 2.2 Como você adquire clientes atualmente?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S2_P2.2_Aquisicao_Clientes" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 2.3 Qual é a taxa de retenção/repetição de clientes?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S2_P2.3_Taxa_Retencao" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 2.4 Qual é o custo de aquisição de cliente (CAC)?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S2_P2.4_CAC" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 2.5 O que consome mais tempo do seu dia?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S2_P2.5_Consumo_Tempo" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 2.6 Você tem feedback direto dos clientes?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S2_P2.6_Feedback_Clientes" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+                <div class="error-message">Por favor, selecione e responda pelo menos 3 perguntas nesta seção.</div>
+            </div>
+        </div>
+
+        <div class="form-step">
+            <div class="section-card" data-section="3">
+                <h2 class="section-title">
+                    SEÇÃO 3: METAS E OPORTUNIDADES
+                    <span class="section-counter">(<span class="count">0</span> de min. 3 selecionadas)</span>
+                </h2>
+                
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 3.1 Qual é sua meta de faturamento para os próximos 12 meses?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S3_P3.1_Meta_Faturamento" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 3.2 Qual seria o impacto ideal de uma estratégia digital?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S3_P3.2_Impacto_Digital" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 3.3 Qual é seu maior gargalo para crescer?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S3_P3.3_Gargalo_Crescimento" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 3.4 Qual é seu maior medo em relação ao crescimento digital?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S3_P3.4_Medo_Digital" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 3.5 Você já investiu em marketing digital antes?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S3_P3.5_Investimento_Previo" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 3.6 Existe um produto/serviço que gostaria de destacar?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S3_P3.6_Produto_Destaque" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+                <div class="error-message">Por favor, selecione e responda pelo menos 3 perguntas nesta seção.</div>
+            </div>
+        </div>
+
+        <div class="form-step">
+            <div class="section-card" data-section="4">
+                <h2 class="section-title">
+                    SEÇÃO 4: RECURSOS E DISPOSIÇÃO
+                    <span class="section-counter">(<span class="count">0</span> de min. 3 selecionadas)</span>
+                </h2>
+                
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 4.1 Qual é seu orçamento mensal disponível para estratégia?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S4_P4.1_Orcamento_Mensal" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 4.2 Quanto tempo você pode dedicar à implementação?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S4_P4.2_Tempo_Dedicado" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 4.3 Qual é seu nível de conhecimento em ferramentas digitais?
+                    </label>
+                    <div class="answer-container">
+                        <div class="options-container">
+                            <label class="radio-option"><input type="radio" name="S4_P4.3_Conhecimento_Digital_Opcao" value="Zero" onchange="atualizarOpcaoUnica(this)"> <strong>Zero:</strong> Só sabe ler as figura</label>
+                            <label class="radio-option"><input type="radio" name="S4_P4.3_Conhecimento_Digital_Opcao" value="Baixo" onchange="atualizarOpcaoUnica(this)"> <strong>Baixo:</strong> Anota tudo no caderno, só sabe mandar zap</label>
+                            <label class="radio-option"><input type="radio" name="S4_P4.3_Conhecimento_Digital_Opcao" value="Médio" onchange="atualizarOpcaoUnica(this)"> <strong>Médio:</strong> Sabe usar o navegador de internet, usa planilhas, documentos de texto, cria apresentações, sabe postar conteúdo no zap e algumas coisas no instagram.</label>
+                            <label class="radio-option"><input type="radio" name="S4_P4.3_Conhecimento_Digital_Opcao" value="Alto" onchange="atualizarOpcaoUnica(this)"> <strong>Alto:</strong> Tudo do médio, mas entende das ferramentas da atualidade, faz criações com IA e já tem um escritório digital. Só precisa de ajuda estratégica.</label>
+                            <label class="radio-option"><input type="radio" name="S4_P4.3_Conhecimento_Digital_Opcao" value="Cria" onchange="atualizarOpcaoUnica(this)"> <strong>Cria:</strong> É desenvolvedor/designer. Só precisa de ajuda estratégica.</label>
+                        </div>
+                        <input type="hidden" name="S4_P4.3_Conhecimento_Digital" value="">
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 4.4 Você tem alguém na equipe que pode ajudar?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S4_P4.4_Apoio_Equipe" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 4.5 Qual é sua maior objeção para não ter feito isso antes?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S4_P4.5_Objecao" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 4.6 Qual é seu prazo realista para ver resultados?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S4_P4.6_Prazo_Resultados" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+                <div class="error-message">Por favor, selecione e responda pelo menos 3 perguntas nesta seção.</div>
+            </div>
+        </div>
+
+        <div class="form-step">
+            <div class="section-card" data-section="5">
+                <h2 class="section-title">
+                    SEÇÃO 5: O INDIVÍDUO POR TRÁS DO NEGÓCIO
+                    <span class="section-counter">(<span class="count">0</span> de min. 3 selecionadas)</span>
+                </h2>
+                
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 5.1 Quanto VOCÊ custa mensalmente?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S5_P5.1_Custo_Pessoal" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 5.2 Quanto você precisa ganhar para viver bem?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S5_P5.2_Ganho_Ideal" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 5.3 Você sabe separar o Eu x Empresa?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S5_P5.3_Separacao_Eu_Empresa" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 5.4 Teria algo que você considera inegociável?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S5_P5.4_Inegociavel" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 5.5 Sobra algo para investimentos e/ou imprevistos?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S5_P5.5_Reserva_Investimento" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 5.6 Como você lida com rejeição ou fracasso?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S5_P5.6_Rejeicao_Fracasso" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 5.7 Qual é seu maior medo pessoal em relação ao negócio?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S5_P5.7_Maior_Medo" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 5.8 Qual é seu maior sonho além do negócio?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S5_P5.8_Maior_Sonho" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+
+                <div class="question-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" onchange="toggleResposta(this)"> 5.9 Você tem tempo para descansar e se recuperar?
+                    </label>
+                    <div class="answer-container">
+                        <textarea name="S5_P5.9_Tempo_Descanso" placeholder="Digite sua resposta aqui..."></textarea>
+                    </div>
+                </div>
+                <div class="error-message">Por favor, selecione e responda pelo menos 3 perguntas nesta seção.</div>
+            </div>
+        </div>
+
+        <div class="btn-container">
+            <button type="button" class="nav-btn prev-btn" id="btnPrev" onclick="mudarEtapa(-1)" style="display: none;">Voltar</button>
+            <button type="button" class="nav-btn next-btn" id="btnNext" onclick="mudarEtapa(1)">Avançar</button>
+            <button type="submit" class="nav-btn submit-btn" id="btnSubmit" style="display: none;">Enviar Diagnóstico</button>
+        </div>
+    </form>
+
+    <div id="successScreen">
+        <div class="success-card">
+            <div class="success-icon">✓</div>
+            <h2>Diagnóstico Enviado com Sucesso!</h2>
+            <p>Suas respostas foram registradas e sincronizadas com o painel. Agora escolha uma das opções abaixo para prosseguirmos.</p>
+            
+            <div class="actions-container">
+                <a href="https://api.whatsapp.com/send?phone=5521967141614&text=Oi,%20Gabi!%20Finalizei%20seu%20formul%C3%A1rio%20e%20quero%20agendar%20a%20nossa%20primeira%20reuni%C3%A3o%20de%20consultoria" target="_blank" class="action-btn btn-whatsapp">
+                    Agendar via WhatsApp
+                </a>
+                <a href="https://www.instagram.com/gabismarketing/" target="_blank" class="action-btn btn-instagram">
+                    Seguir no Instagram
+                </a>
+                <button type="button" class="action-btn btn-back" onclick="reiniciarFormulario()">
+                    Voltar ao Início
+                </button>
             </div>
         </div>
     </div>
-
-    <form id="anamneseForm" action="https://script.google.com/macros/s/AKfycbylEO7NlE2gGk6nJfbfK3pnNRxCDRn9s24ciTmThGc25LuL_iBMy_ILcrdunhEtjIZ6/exec" method="POST" onsubmit="enviarFormularioAPI(event)">
-        
-        <div class="form-step active">
-            <h2>Dados Cadastrais</h2>
-            
-            <div class="form-group">
-                <label for="Cadastro_Nome">Qual o seu nome completo?</label>
-                <input type="text" id="Cadastro_Nome" name="Cadastro_Nome" required placeholder="Digite seu nome">
-            </div>
-
-            <div class="form-group">
-                <label for="Cadastro_WhatsApp">Seu WhatsApp de contato (com DDD):</label>
-                <input type="text" id="Cadastro_WhatsApp" name="Cadastro_WhatsApp" required placeholder="(00) 00000-0000">
-            </div>
-
-            <div class="form-group">
-                <label for="Cadastro_Empresa_Projeto">Qual o nome da sua Empresa ou Projeto?</label>
-                <input type="text" id="Cadastro_Empresa_Projeto" name="Cadastro_Empresa_Projeto" required placeholder="Nome do negócio">
-            </div>
-
-            <div class="form-group">
-                <label for="Cadastro_Email">Seu melhor E-mail:</label>
-                <input type="email" id="Cadastro_Email" name="Cadastro_Email" required placeholder="nome@empresa.com">
-            </div>
-        </div>
-
-        <div class="form-step">
-            <h2>Seção 1: Situação Atual</h2>
-            
-            <div class="form-group">
-                <label>1.1 Quanto tempo de existência tem o seu negócio?</label>
-                <div class="options-grid">
-                    <div class="option-card" onclick="selectOption(this, 'S1_P1.1_Tempo_Negocio', 'Menos de 1 ano')">
-                        <input type="radio" name="S1_P1.1_Tempo_Negocio" value="Menos de 1 ano" required> Menos de 1 ano
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S1_P1.1_Tempo_Negocio', '1 a 3 anos')">
-                        <input type="radio" name="S1_P1.1_Tempo_Negocio" value="1 a 3 anos"> 1 a 3 anos
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S1_P1.1_Tempo_Negocio', 'Mais de 3 anos')">
-                        <input type="radio" name="S1_P1.1_Tempo_Negocio" value="Mais de 3 anos"> Mais de 3 anos
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>1.2 Qual a faixa de faturamento mensal média atual?</label>
-                <div class="options-grid">
-                    <div class="option-card" onclick="selectOption(this, 'S1_P1.2_Faturamento', 'Até R$ 10 mil')">
-                        <input type="radio" name="S1_P1.2_Faturamento" value="Até R$ 10 mil" required> Até R$ 10 mil
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S1_P1.2_Faturamento', 'R$ 10 mil a R$ 50 mil')">
-                        <input type="radio" name="S1_P1.2_Faturamento" value="R$ 10 mil a R$ 50 mil"> R$ 10 mil a R$ 50 mil
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S1_P1.2_Faturamento', 'R$ 50 mil a R$ 100 mil')">
-                        <input type="radio" name="S1_P1.2_Faturamento" value="R$ 50 mil a R$ 100 mil"> R$ 50 mil a R$ 100 mil
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S1_P1.2_Faturamento', 'Mais de R$ 100 mil')">
-                        <input type="radio" name="S1_P1.2_Faturamento" value="Mais de R$ 100 mil"> Mais de R$ 100 mil
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>1.3 Você conhece a margem de lucro líquida do seu produto/serviço?</label>
-                <div class="options-grid">
-                    <div class="option-card" onclick="selectOptionWithText(this, 'S1_P1.3_Margem_Lucro', 'Sim', 'txt_S1_P1.3')">
-                        <input type="radio" name="S1_P1.3_Margem_Lucro" value="Sim" required> Sim, eu sei exatamente
-                    </div>
-                    <div class="option-card" onclick="selectOptionWithText(this, 'S1_P1.3_Margem_Lucro', 'Não', 'txt_S1_P1.3')">
-                        <input type="radio" name="S1_P1.3_Margem_Lucro" value="Não"> Não, tenho apenas uma estimativa por cima
-                    </div>
-                </div>
-                <div class="answer-container" id="container_txt_S1_P1.3">
-                    <label id="label_txt_S1_P1.3"></label>
-                    <textarea name="S1_P1.3_Margem_Lucro_Explica" rows="3" placeholder="Escreva aqui..." oninput="countChars(this)"></textarea>
-                    <div class="char-counter"><span class="count">0</span>/2000</div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>1.4 Como está estruturada a sua equipe hoje?</label>
-                <div class="options-grid">
-                    <div class="option-card" onclick="selectOptionWithText(this, 'S1_P1.4_Equipe', 'Solo', 'txt_S1_P1.4')">
-                        <input type="radio" name="S1_P1.4_Equipe" value="Solo" required> Trabalho sozinho (Solo)
-                    </div>
-                    <div class="option-card" onclick="selectOptionWithText(this, 'S1_P1.4_Equipe', 'Pequena', 'txt_S1_P1.4')">
-                        <input type="radio" name="S1_P1.4_Equipe" value="Pequena"> Pequena equipe (1 a 4 pessoas)
-                    </div>
-                    <div class="option-card" onclick="selectOptionWithText(this, 'S1_P1.4_Equipe', 'Estruturada', 'txt_S1_P1.4')">
-                        <input type="radio" name="S1_P1.4_Equipe" value="Estruturada"> Equipe média/estruturada (Mais de 5 pessoas)
-                    </div>
-                </div>
-                <div class="answer-container" id="container_txt_S1_P1.4">
-                    <label id="label_txt_S1_P1.4"></label>
-                    <textarea name="S1_P1.4_Equipe_Explica" rows="3" placeholder="Escreva aqui..." oninput="countChars(this)"></textarea>
-                    <div class="char-counter"><span class="count">0</span>/2000</div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>1.5 Qual é o principal canal de aquisição de clientes atualmente?</label>
-                <div class="options-grid">
-                    <div class="option-card" onclick="selectOption(this, 'S1_P1.5_Canal_Vendas', 'Indicação / Boca a boca')">
-                        <input type="radio" name="S1_P1.5_Canal_Vendas" value="Indicação / Boca a boca" required> Indicação / Boca a boca
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S1_P1.5_Canal_Vendas', 'Redes Sociais (Orgânico)')">
-                        <input type="radio" name="S1_P1.5_Canal_Vendas" value="Redes Sociais (Orgânico)"> Redes Sociais (Orgânico)
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S1_P1.5_Canal_Vendas', 'Anúncios Pagos (Trafego Pago)')">
-                        <input type="radio" name="S1_P1.5_Canal_Vendas" value="Anúncios Pagos (Trafego Pago)"> Anúncios Pagos (Tráfego Pago)
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S1_P1.5_Canal_Vendas', 'Prospecção Ativa (Outbound)')">
-                        <input type="radio" name="S1_P1.5_Canal_Vendas" value="Prospecção Ativa (Outbound)"> Prospecção Ativa (Outbound)
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>1.6 O custo fixo operacional atual incomoda ou gera pressão financeira?</label>
-                <div class="options-grid">
-                    <div class="option-card" onclick="selectOptionWithText(this, 'S1_P1.6_Custo_Fixo', 'Sim', 'txt_S1_P1.6')">
-                        <input type="radio" name="S1_P1.6_Custo_Fixo" value="Sim" required> Sim, pesa bastante no fim do mês
-                    </div>
-                    <div class="option-card" onclick="selectOptionWithText(this, 'S1_P1.6_Custo_Fixo', 'Não', 'txt_S1_P1.6')">
-                        <input type="radio" name="S1_P1.6_Custo_Fixo" value="Não"> Não, está totalmente controlado e saudável
-                    </div>
-                </div>
-                <div class="answer-container" id="container_txt_S1_P1.6">
-                    <label id="label_txt_S1_P1.6"></label>
-                    <textarea name="S1_P1.6_Custo_Fixo_Explica" rows="3" placeholder="Escreva aqui..." oninput="countChars(this)"></textarea>
-                    <div class="char-counter"><span class="count">0</span>/2000</div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>1.7 Qual você considera ser o maior diferencial competitivo do seu negócio hoje?</label>
-                <textarea name="S1_P1.7_Diferencial" rows="3" required placeholder="Explique brevemente o que te diferencia dos concorrentes..." oninput="countChars(this)"></textarea>
-                <div class="char-counter"><span class="count">0</span>/2000</div>
-            </div>
-        </div>
-
-        <div class="form-step">
-            <h2>Seção 2: Dores e Desafios</h2>
-            
-            <div class="form-group">
-                <label>2.1 Qual é o principal gargalo operacional que trava o seu dia a dia hoje?</label>
-                <textarea name="S2_P2.1_Desafio_Operacional" rows="3" required placeholder="Ex: Falta de processos, excesso de tarefas manuais, dependência de você..." oninput="countChars(this)"></textarea>
-                <div class="char-counter"><span class="count">0</span>/2000</div>
-            </div>
-
-            <div class="form-group">
-                <label>2.2 Qual a maior dificuldade na aquisição de novos clientes?</label>
-                <div class="options-grid">
-                    <div class="option-card" onclick="selectOptionWithText(this, 'S2_P2.2_Aquisicao_Clientes', 'Previsibilidade', 'txt_S2_P2.2')">
-                        <input type="radio" name="S2_P2.2_Aquisicao_Clientes" value="Previsibilidade" required> Falta de previsibilidade (meses bons vs meses ruins)
-                    </div>
-                    <div class="option-card" onclick="selectOptionWithText(this, 'S2_P2.2_Aquisicao_Clientes', 'Preço', 'txt_S2_P2.2')">
-                        <input type="radio" name="S2_P2.2_Aquisicao_Clientes" value="Preço"> Atrair clientes que só buscam menor preço (leilão)
-                    </div>
-                    <div class="option-card" onclick="selectOptionWithText(this, 'S2_P2.2_Aquisicao_Clientes', 'Canais', 'txt_S2_P2.2')">
-                        <input type="radio" name="S2_P2.2_Aquisicao_Clientes" value="Canais"> Não conseguir fazer canais digitais funcionarem
-                    </div>
-                </div>
-                <div class="answer-container" id="container_txt_S2_P2.2">
-                    <label id="label_txt_S2_P2.2"></label>
-                    <textarea name="S2_P2.2_Aquisicao_Clientes_Explica" rows="3" placeholder="Escreva aqui..." oninput="countChars(this)"></textarea>
-                    <div class="char-counter"><span class="count">0</span>/2000</div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>2.3 Os clientes atuais costumam comprar mais de uma vez ou manter contratos longos?</label>
-                <div class="options-grid">
-                    <div class="option-card" onclick="selectOptionWithText(this, 'S2_P2.3_Taxa_Retencao', 'Sim', 'txt_S2_P2.3')">
-                        <input type="radio" name="S2_P2.3_Taxa_Retencao" value="Sim" required> Sim, temos uma boa retenção/recorrência
-                    </div>
-                    <div class="option-card" onclick="selectOptionWithText(this, 'S2_P2.3_Taxa_Retencao', 'Não', 'txt_S2_P2.3')">
-                        <input type="radio" name="S2_P2.3_Taxa_Retencao" value="Não"> Não, a maioria compra apenas uma vez (transacional)
-                    </div>
-                </div>
-                <div class="answer-container" id="container_txt_S2_P2.3">
-                    <label id="label_txt_S2_P2.3"></label>
-                    <textarea name="S2_P2.3_Taxa_Retencao_Explica" rows="3" placeholder="Escreva aqui..." oninput="countChars(this)"></textarea>
-                    <div class="char-counter"><span class="count">0</span>/2000</div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>2.4 Você sabe quanto custa atrair um cliente novo (CAC)?</label>
-                <div class="options-grid">
-                    <div class="option-card" onclick="selectOptionWithText(this, 'S2_P2.4_CAC', 'Sim', 'txt_S2_P2.4')">
-                        <input type="radio" name="S2_P2.4_CAC" value="Sim" required> Sim, tenho essa métrica clara
-                    </div>
-                    <div class="option-card" onclick="selectOptionWithText(this, 'S2_P2.4_CAC', 'Não', 'txt_S2_P2.4')">
-                        <input type="radio" name="S2_P2.4_CAC" value="Não"> Não faço ideia de como calcular isso hoje
-                    </div>
-                </div>
-                <div class="answer-container" id="container_txt_S2_P2.4">
-                    <label id="label_txt_S2_P2.4"></label>
-                    <textarea name="S2_P2.4_CAC_Explica" rows="3" placeholder="Escreva aqui..." oninput="countChars(this)"></textarea>
-                    <div class="char-counter"><span class="count">0</span>/2000</div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>2.5 Quanto do seu tempo diário é consumido por tarefas operacionais/burocráticas?</label>
-                <div class="options-grid">
-                    <div class="option-card" onclick="selectOption(this, 'S2_P2.5_Consumo_Tempo', 'Quase todo o tempo')">
-                        <input type="radio" name="S2_P2.5_Consumo_Tempo" value="Quase todo o tempo" required> Praticamente 100% (se eu parar, a empresa para)
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S2_P2.5_Consumo_Tempo', 'Metade do tempo')">
-                        <input type="radio" name="S2_P2.5_Consumo_Tempo" value="Metade do tempo"> Cerca de 50% (divido entre apagar incêndios e estratégia)
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S2_P2.5_Consumo_Tempo', 'Livre para estratégia')">
-                        <input type="radio" name="S2_P2.5_Consumo_Tempo" value="Livre para estratégia"> Menos de 20% (estou livre para focar no crescimento)
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>2.6 Qual o feedback ou reclamação mais frequente que você recebe dos clientes?</label>
-                <textarea name="S2_P2.6_Feedback_Clientes" rows="3" required placeholder="Seja sincero: o que eles apontam que poderia melhorar?" oninput="countChars(this)"></textarea>
-                <div class="char-counter"><span class="count">0</span>/2000</div>
-            </div>
-        </div>
-
-        <div class="form-step">
-            <h2>Seção 3: Metas e Oportunidades</h2>
-            
-            <div class="form-group">
-                <label>3.1 Qual é a sua meta de faturamento realista para os próximos 12 meses?</label>
-                <input type="text" name="S3_P3.1_Meta_Faturamento" required placeholder="Ex: Dobrar o faturamento, atingir R$ 100k/mês...">
-            </div>
-
-            <div class="form-group">
-                <label>3.2 O que aconteceria com o negócio se você escalasse as vendas digitais em 3x no próximo trimestre?</label>
-                <div class="options-grid">
-                    <div class="option-card" onclick="selectOptionWithText(this, 'S3_P3.2_Impacto_Digital', 'Suportaria', 'txt_S3_P3.2')">
-                        <input type="radio" name="S3_P3.2_Impacto_Digital" value="Suportaria" required> A operação suportaria tranquilamente e daria muito lucro
-                    </div>
-                    <div class="option-card" onclick="selectOptionWithText(this, 'S3_P3.2_Impacto_Digital', 'Entraria em colapso', 'txt_S3_P3.2')">
-                        <input type="radio" name="S3_P3.2_Impacto_Digital" value="Entraria em colapso"> A operação entraria em colapso por falta de braço/processo
-                    </div>
-                </div>
-                <div class="answer-container" id="container_txt_S3_P3.2">
-                    <label id="label_txt_S3_P3.2"></label>
-                    <textarea name="S3_P3.2_Impacto_Digital_Explica" rows="3" placeholder="Escreva aqui..." oninput="countChars(this)"></textarea>
-                    <div class="char-counter"><span class="count">0</span>/2000</div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>3.3 Qual é o maior obstáculo invisível que impede seu negócio de crescer hoje?</label>
-                <textarea name="S3_P3.3_Gargalo_Crescimento" rows="3" required placeholder="O que você sente que falta, mas ainda não conseguiu resolver?" oninput="countChars(this)"></textarea>
-                <div class="char-counter"><span class="count">0</span>/2000</div>
-            </div>
-
-            <div class="form-group">
-                <label>3.4 Qual o seu maior medo em relação a migrar ou intensificar sua presença no digital?</label>
-                <div class="options-grid">
-                    <div class="option-card" onclick="selectOption(this, 'S3_P3.4_Medo_Digital', 'Perder dinheiro')">
-                        <input type="radio" name="S3_P3.4_Medo_Digital" value="Perder dinheiro" required> Perder dinheiro investindo em anúncios sem retorno
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S3_P3.4_Medo_Digital', 'Ficar exposto')">
-                        <input type="radio" name="S3_P3.4_Medo_Digital" value="Ficar exposto"> Exposição pessoal excessiva ou perda de foco na entrega
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S3_P3.4_Medo_Digital', 'Não entender a técnica')">
-                        <input type="radio" name="S3_P3.4_Medo_Digital" value="Não entender a técnica"> Não dominar as ferramentas técnicas e depender de agências ruins
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>3.5 Você já tentou alguma estratégia digital que falhou? Se sim, qual foi o motivo?</label>
-                <textarea name="S3_P3.5_Investimento_Previo" rows="3" required placeholder="Conte sua experiência prévia com agências, cursos ou tráfego..." oninput="countChars(this)"></textarea>
-                <div class="char-counter"><span class="count">0</span>/2000</div>
-            </div>
-
-            <div class="form-group">
-                <label>3.6 Qual é o seu produto ou serviço mais fácil de vender e com melhor margem?</label>
-                <input type="text" name="S3_P3.6_Produto_Destaque" required placeholder="Aquele produto/serviço que carrega a empresa nas costas">
-            </div>
-        </div>
-
-        <div class="form-step">
-            <h2>Seção 4: Recursos e Disposição</h2>
-            
-            <div class="form-group">
-                <label>4.1 Qual o orçamento mensal disponível exclusivo para marketing e anúncios?</label>
-                <div class="options-grid">
-                    <div class="option-card" onclick="selectOption(this, 'S4_P4.1_Orcamento_Mensal', 'Até R$ 1.000')">
-                        <input type="radio" name="S4_P4.1_Orcamento_Mensal" value="Até R$ 1.000" required> Até R$ 1.000 / mês
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S4_P4.1_Orcamento_Mensal', 'R$ 1.000 a R$ 3.000')">
-                        <input type="radio" name="S4_P4.1_Orcamento_Mensal" value="R$ 1.000 a R$ 3.000"> R$ 1.000 a R$ 3.000 / mês
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S4_P4.1_Orcamento_Mensal', 'Mais de R$ 3.000')">
-                        <input type="radio" name="S4_P4.1_Orcamento_Mensal" value="Mais de R$ 3.000"> Mais de R$ 3.000 / mês
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>4.2 Quantas horas semanais você pode dedicar pessoalmente à implementação estratégica?</label>
-                <div class="options-grid">
-                    <div class="option-card" onclick="selectOption(this, 'S4_P4.2_Tempo_Dedicado', 'Menos de 5 horas')">
-                        <input type="radio" name="S4_P4.2_Tempo_Dedicado" value="Menos de 5 horas" required> Menos de 5 horas semanais (tempo muito escasso)
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S4_P4.2_Tempo_Dedicado', '5 a 10 horas')">
-                        <input type="radio" name="S4_P4.2_Tempo_Dedicado" value="5 a 10 horas"> De 5 a 10 horas semanais
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S4_P4.2_Tempo_Dedicado', 'Mais de 10 horas')">
-                        <input type="radio" name="S4_P4.2_Tempo_Dedicado" value="Mais de 10 horas"> Mais de 10 horas semanais (foco total na transição)
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>4.3 Qual o seu nível de facilidade em aprender novas ferramentas e conceitos de tecnologia?</label>
-                <div class="options-grid">
-                    <div class="option-card" onclick="selectOption(this, 'S4_P4.3_Conhecimento_Digital', 'Baixo')">
-                        <input type="radio" name="S4_P4.3_Conhecimento_Digital" value="Baixo" required> Baixo (travo muito com tecnologia, prefiro que façam por mim)
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S4_P4.3_Conhecimento_Digital', 'Médio')">
-                        <input type="radio" name="S4_P4.3_Conhecimento_Digital" value="Médio"> Médio (com um direcionamento ou tutorial eu consigo me virar)
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S4_P4.3_Conhecimento_Digital', 'Alto')">
-                        <input type="radio" name="S4_P4.3_Conhecimento_Digital" value="Alto"> Alto (aprendo muito rápido e gosto de tecnologia)
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>4.4 Você tem o apoio das pessoas chave da sua empresa/família para fazer essa virada de chave?</label>
-                <div class="options-grid">
-                    <div class="option-card" onclick="selectOptionWithText(this, 'S4_P4.4_Apoio_Equipe', 'Sim', 'txt_S4_P4.4')">
-                        <input type="radio" name="S4_P4.4_Apoio_Equipe" value="Sim" required> Sim, todos estão alinhados
-                    </div>
-                    <div class="option-card" onclick="selectOptionWithText(this, 'S4_P4.4_Apoio_Equipe', 'Não', 'txt_S4_P4.4')">
-                        <input type="radio" name="S4_P4.4_Apoio_Equipe" value="Não"> Não, enfrento resistência interna ou insegurança dos sócios/parceiros
-                    </div>
-                </div>
-                <div class="answer-container" id="container_txt_S4_P4.4">
-                    <label id="label_txt_S4_P4.4"></label>
-                    <textarea name="S4_P4.4_Apoio_Equipe_Explica" rows="3" placeholder="Escreva aqui..." oninput="countChars(this)"></textarea>
-                    <div class="char-counter"><span class="count">0</span>/2000</div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>4.5 Se você decidir não investir em uma solução estratégica estruturada agora, qual o plano B?</label>
-                <textarea name="S4_P4.5_Objecao" rows="3" required placeholder="O que você vai fazer para resolver esses problemas sozinho?" oninput="countChars(this)"></textarea>
-                <div class="char-counter"><span class="count">0</span>/2000</div>
-            </div>
-
-            <div class="form-group">
-                <label>4.6 Qual o prazo máximo que você estipulou para começar a colher os primeiros resultados?</label>
-                <div class="options-grid">
-                    <div class="option-card" onclick="selectOption(this, 'S4_P4.6_Prazo_Resultados', '30 dias')">
-                        <input type="radio" name="S4_P4.6_Prazo_Resultados" value="30 dias" required> Imediato (próximos 30 dias - preciso de caixa urgente)
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S4_P4.6_Prazo_Resultados', '3 meses')">
-                        <input type="radio" name="S4_P4.6_Prazo_Resultados" value="3 meses"> Curto prazo (até 3 meses - tempo de maturação saudável)
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S4_P4.6_Prazo_Resultados', '6 meses')">
-                        <input type="radio" name="S4_P4.6_Prazo_Resultados" value="6 meses"> Médio prazo (6 meses ou mais - visão de construção de ativos)
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-step">
-            <h2>Seção 5: O Indivíduo por trás do Negócio</h2>
-            
-            <div class="form-group">
-                <label>5.1 Quanto custa o seu estilo de vida pessoal hoje?</label>
-                <div class="options-grid">
-                    <div class="option-card" onclick="selectOption(this, 'S5_P5.1_Custo_Pessoal', 'Até R$ 5 mil')">
-                        <input type="radio" name="S5_P5.1_Custo_Pessoal" value="Até R$ 5 mil" required> Até R$ 5 mil / mês
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S5_P5.1_Custo_Pessoal', 'R$ 5 mil a R$ 15 mil')">
-                        <input type="radio" name="S5_P5.1_Custo_Pessoal" value="R$ 5 mil a R$ 15 mil"> R$ 5 mil a R$ 15 mil / mês
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S5_P5.1_Custo_Pessoal', 'Mais de R$ 15 mil')">
-                        <input type="radio" name="S5_P5.1_Custo_Pessoal" value="Mais de R$ 15 mil"> Mais de R$ 15 mil / mês
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>5.2 Quanto você gostaria de estar retirando da empresa idealmente (Pro-labore líquido)?</label>
-                <input type="text" name="S5_P5.2_Ganho_Ideal" required placeholder="O valor que traria total tranquilidade e realização financeira">
-            </div>
-
-            <div class="form-group">
-                <label>5.3 Suas contas pessoais e as da empresa são totalmente separadas ou costumam se misturar?</label>
-                <div class="options-grid">
-                    <div class="option-card" onclick="selectOption(this, 'S5_P5.3_Separacao_Eu_Empresa', 'Separadas')">
-                        <input type="radio" name="S5_P5.3_Separacao_Eu_Empresa" value="Separadas" required> Totalmente separadas (organização perfeita)
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S5_P5.3_Separacao_Eu_Empresa', 'Misturam às vezes')">
-                        <input type="radio" name="S5_P5.3_Separacao_Eu_Empresa" value="Misturam às vezes"> Misturam esporadicamente em meses mais apertados
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S5_P5.3_Separacao_Eu_Empresa', 'Totalmente misturadas')">
-                        <input type="radio" name="S5_P5.3_Separacao_Eu_Empresa" value="Totalmente misturadas"> Praticamente juntas (pago contas pessoais direto pela conta da empresa)
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>5.4 O que é absolutamente inegociável para você na sua rotina atual?</label>
-                <textarea name="S5_P5.4_Inegociável" rows="3" required placeholder="Ex: Final de semana com a família, treinar todo dia, não trabalhar após as 19h..." oninput="countChars(this)"></textarea>
-                <div class="char-counter"><span class="count">0</span>/2000</div>
-            </div>
-
-            <div class="form-group">
-                <label>5.5 Você possui uma reserva financeira pessoal que te dê segurança para arriscar novos movimentos?</label>
-                <div class="options-grid">
-                    <div class="option-card" onclick="selectOption(this, 'S5_P5.5_Reserva_Investimento', 'Sim, mais de 6 meses')">
-                        <input type="radio" name="S5_P5.5_Reserva_Investimento" value="Sim, mais de 6 meses" required> Sim, que cobre mais de 6 meses de custos
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S5_P5.5_Reserva_Investimento', 'Sim, curta')">
-                        <input type="radio" name="S5_P5.5_Reserva_Investimento" value="Sim, curta"> Sim, mas curta (1 a 3 meses)
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S5_P5.5_Reserva_Investimento', 'Não tenho')">
-                        <input type="radio" name="S5_P5.5_Reserva_Investimento" value="Não tenho"> Não possuo reserva pessoal no momento (dependo 100% do giro do mês)
-                    </div>
-                </div>
-            </div>
-
-            <div class="form-group">
-                <label>5.6 Como você lida emocionalmente com a rejeição em vendas ou com um lançamento que não performa?</label>
-                <textarea name="S5_P5.6_Rejeicao_Fracasso" rows="3" required placeholder="Como é seu processo de absorver o erro e recalcular a rota?" oninput="countChars(this)"></textarea>
-                <div class="char-counter"><span class="count">0</span>/2000</div>
-            </div>
-
-            <div class="form-group">
-                <label>5.7 Qual o seu maior medo profissional ou pessoal hoje?</label>
-                <textarea name="S5_P5.7_Maior_Medo" rows="3" required placeholder="O que te tira o sono em relação ao futuro do negócio?" oninput="countChars(this)"></textarea>
-                <div class="char-counter"><span class="count">0</span>/2000</div>
-            </div>
-
-            <div class="form-group">
-                <label>5.8 Qual o seu maior sonho ou visão de vida a longo prazo que este negócio deve financiar?</label>
-                <textarea name="S5_P5.8_Maior_Sonho" rows="3" required placeholder="Onde você quer estar e o que quer ter conquistado daqui a 5 anos?" oninput="countChars(this)"></textarea>
-                <div class="char-counter"><span class="count">0</span>/2000</div>
-            </div>
-
-            <div class="form-group">
-                <label>5.9 Qual foi a última vez que você tirou 7 dias seguidos de férias 100% desconectado da operação?</label>
-                <div class="options-grid">
-                    <div class="option-card" onclick="selectOption(this, 'S5_P5.9_Tempo_Descanso', 'Nos últimos 6 meses')">
-                        <input type="radio" name="S5_P5.9_Tempo_Descanso" value="Nos últimos 6 meses" required> Nos últimos 6 meses
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S5_P5.9_Tempo_Descanso', 'Há mais de 1 ano')">
-                        <input type="radio" name="S5_P5.9_Tempo_Descanso" value="Há mais de 1 ano"> Há mais de 1 ano
-                    </div>
-                    <div class="option-card" onclick="selectOption(this, 'S5_P5.9_Tempo_Descanso', 'Nunca tirei')">
-                        <input type="radio" name="S5_P5.9_Tempo_Descanso" value="Nunca tirei"> Nunca tirei férias desde que abri a empresa
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="navigation-row">
-            <button type="button" class="btn-secondary" id="btnPrev" onclick="changeStep(-1)" disabled>Voltar</button>
-            <button type="button" class="btn-primary" id="btnNext" onclick="changeStep(1)">Próxima Etapa</button>
-            <button type="submit" class="btn-primary" id="btnSubmit" style="display: none;">Enviar Diagnóstico</button>
-        </div>
-
-    </form>
 </div>
 
 <script>
     let etapaAtual = 0;
     const etapas = document.querySelectorAll(".form-step");
-    const barraProgresso = document.getElementById("progressBar");
     const indicadores = document.querySelectorAll(".step-indicator");
+    const barraProgresso = document.getElementById("progressBar");
 
-    function updateProgressBar() {
-        const totalEtapas = etapas.length - 1;
-        const porcentagem = (etapaAtual / totalEtapas) * 100;
-        barraProgresso.style.width = porcentagem + "%";
+    function atualizarAssuntoEmail(nome) {
+        const assuntoInput = document.getElementById('emailSubject');
+        assuntoInput.value = nome.trim() !== "" ? "Anamnese - " + nome : "Anamnese - Novo Cadastro";
+    }
+
+    function toggleResposta(checkbox) {
+        const container = checkbox.parentElement.nextElementSibling;
+        const textarea = container.querySelector('textarea');
         
-        indicadores.forEach((ind, index) => {
-            if (index === etapaAtual) {
-                ind.className = "step-indicator active";
-            } else if (index < etapaAtual) {
-                ind.className = "step-indicator completed";
-            } else {
-                ind.className = "step-indicator";
+        if (checkbox.checked) {
+            container.style.display = 'block';
+            if (textarea) textarea.setAttribute('required', 'true');
+        } else {
+            container.style.display = 'none';
+            if (textarea) {
+                textarea.removeAttribute('required');
+                textarea.value = '';
             }
-        });
+            const inputs = container.querySelectorAll('input[type="radio"], input[type="checkbox"]');
+            inputs.forEach(i => i.checked = false);
+            const hidden = container.querySelector('input[type="hidden"]');
+            if (hidden) hidden.value = '';
+        }
+        atualizarContador(checkbox);
     }
 
-    function selectOption(card, inputName, val) {
-        const grid = card.closest('.options-grid');
-        grid.querySelectorAll('.option-card').forEach(c => c.classList.remove('selected'));
-        card.classList.add('selected');
-        
-        const radio = card.querySelector('input[type="radio"]');
-        radio.checked = true;
+    function atualizarOpcaoUnica(radio) {
+        const container = radio.closest('.answer-container');
+        const hiddenInput = container.querySelector('input[type="hidden"]');
+        if (hiddenInput) hiddenInput.value = radio.value;
     }
 
-    function selectOptionWithText(card, inputName, val, textContainerId) {
-        selectOption(card, inputName, val);
-        
-        const container = document.getElementById("container_" + textContainerId);
-        const label = document.getElementById("label_" + textContainerId);
-        const textarea = container.querySelector("textarea");
-        
-        container.style.display = "block";
-        textarea.setAttribute("required", "true");
-        
-        // Mapeamento dinâmico dos textos dependendo da escolha
-        if (inputName.includes("Margem_Lucro")) {
-            label.textContent = val === "Sim" ? "Qual é a sua margem aproximada hoje?" : "Quais as principais dúvidas ou confusões que surgem na hora de calcular?";
-        } else if (inputName.includes("Equipe")) {
-            label.textContent = val === "Solo" ? "Você sente falta de braço ou gostaria de contratar alguém nos próximos meses?" : "Quais os papéis/funções atuais e onde estão os problemas de entrega?";
-        } else if (inputName.includes("Custo_Fixo")) {
-            label.textContent = val === "Sim" ? "O que compõe a maior parte desse custo hoje?" : "Qual estratégia você usa para manter a estrutura sempre enxuta?";
-        } else if (inputName.includes("Aquisicao_Clientes")) {
-            label.textContent = "Explique brevemente esse desafio prático no seu dia a dia:";
-        } else if (inputName.includes("Taxa_Retencao")) {
-            label.textContent = val === "Sim" ? "Qual o tempo médio de permanência dos seus clientes?" : "Por que você acha que eles não voltam a comprar de você?";
-        } else if (inputName.includes("CAC")) {
-            label.textContent = val === "Sim" ? "Qual o valor médio atual do seu CAC?" : "Onde você sente que está gastando dinheiro à toa tentando vender?";
-        } else if (inputName.includes("Impacto_Digital")) {
-            label.textContent = val === "Suportaria" ? "Como você daria conta dessa nova demanda sem perder qualidade?" : "Onde a estrutura quebraria primeiro?";
-        } else if (inputName.includes("Apoio_Equipe")) {
-            label.textContent = val === "Sim" ? "Como eles pretendem ajudar na execução?" : "Como essa falta de apoio afeta o seu ritmo ou suas decisões?";
+    function atualizarOpcaoMultipla(checkboxInterno) {
+        const container = checkboxInterno.closest('.answer-container');
+        const hiddenInput = container.querySelector('input[type="hidden"]');
+        const marcados = container.querySelectorAll('input[type="checkbox"]:checked');
+        let valores = [];
+        marcados.forEach(item => valores.push(item.value));
+        if (hiddenInput) hiddenInput.value = valores.join(', ');
+    }
+
+    function atualizarContador(element) {
+        const card = element.closest('.section-card');
+        const checkboxesMarcados = card.querySelectorAll('.question-group > label.checkbox-label > input[type="checkbox"]:checked').length;
+        const counter = card.querySelector('.count');
+        if(counter) counter.textContent = checkboxesMarcados;
+        if (checkboxesMarcados >= 3) {
+            const errorMsg = card.querySelector('.error-message');
+            if(errorMsg) errorMsg.style.display = 'none';
         }
     }
 
-    function countChars(obj){
-        const parent = obj.closest('.form-group') || obj.closest('.answer-container');
-        const counter = parent.querySelector('.count');
-        if(counter) counter.textContent = obj.value.length;
+    function mudarEtapa(direcao) {
+        if (direcao === 1 && !validarEtapaAtual()) return false;
+
+        etapas[etapaAtual].classList.remove("active");
+        etapaAtual += direcao;
+        
+        etapas[etapaAtual].classList.add("active");
+        atualizarInterfaceEtapa();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function validarEtapaAtual() {
-        const etapaVisivel = etapas[etapaAtual];
-        const camposObrigatorios = etapaVisivel.querySelectorAll("[required]");
+        const etapaAtiva = etapas[etapaAtual];
         
-        for (let i = 0; i < camposObrigatorios.length; i++) {
-            if (!camposObrigatorios[i].value || (camposObrigatorios[i].type === "radio" && !etapaVisivel.querySelector(`input[name="${camposObrigatorios[i].name}"]:checked`))) {
-                alert("Por favor, preencha todos os campos obrigatórios da etapa atual antes de prosseguir.");
+        if (etapaAtual === 0) {
+            const inputs = etapaAtiva.querySelectorAll("input[required]");
+            let valido = true;
+            inputs.forEach(input => {
+                if (!input.checkValidity()) {
+                    input.reportValidity();
+                    valido = false;
+                }
+            });
+            return valido;
+        }
+        
+        const card = etapaAtiva.querySelector('.section-card[data-section]');
+        if (card) {
+            const numMarcados = card.querySelectorAll('.question-group > label.checkbox-label > input[type="checkbox"]:checked').length;
+            const errorMsg = card.querySelector('.error-message');
+            
+            if (numMarcados < 3) {
+                errorMsg.textContent = "Por favor, selecione e responda pelo menos 3 perguntas nesta seção.";
+                errorMsg.style.display = 'block';
                 return false;
             }
+            
+            // Valida se os campos ativos de texto estão preenchidos
+            const textareasAtivas = card.querySelectorAll('.answer-container[style*="display: block"] textarea[required]');
+            let caixasPreenchidas = true;
+            textareasAtivas.forEach(txt => {
+                if(txt.value.trim() === "") caixasPreenchidas = false;
+            });
+
+            if(!caixasPreenchidas) {
+                errorMsg.textContent = "Por favor, responda o campo de texto das perguntas que você marcou.";
+                errorMsg.style.display = 'block';
+                return false;
+            }
+
+            errorMsg.style.display = 'none';
+            return true;
         }
         return true;
     }
 
-    function changeStep(direction) {
-        if (direction === 1 && !validarEtapaAtual()) return false;
-
-        etapas[etapaAtual].classList.remove("active");
-        etapaAtual += direction;
-        etapas[etapaAtual].classList.add("active");
-
-        document.getElementById("btnPrev").disabled = etapaAtual === 0;
+    function atualizarInterfaceEtapa() {
+        document.getElementById("btnPrev").style.display = etapaAtual === 0 ? "none" : "block";
 
         if (etapaAtual === etapas.length - 1) {
             document.getElementById("btnNext").style.display = "none";
@@ -888,8 +838,13 @@
             document.getElementById("btnSubmit").style.display = "none";
         }
 
-        updateProgressBar();
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        indicadores.forEach((ind, idx) => {
+            if (idx === etapaAtual) ind.className = "step-indicator active";
+            else if (idx < etapaAtual) ind.className = "step-indicator completed";
+            else ind.className = "step-indicator";
+        });
+
+        barraProgresso.style.width = ((etapaAtual / (etapas.length - 1)) * 100) + "%";
     }
 
     async function enviarFormularioAPI(event) {
@@ -905,20 +860,37 @@
         const formData = new FormData(formulario);
 
         try {
-            await fetch(formulario.action, {
+            const resposta = await fetch(formulario.action, {
                 method: "POST",
                 body: formData,
-                mode: "no-cors"
+                headers: { 'Accept': 'application/json' }
             });
             
-            // Sucesso (no-cors não expõe o JSON mas envia os dados com sucesso para o Apps Script)
-            window.location.href = "obrigado.html";
-
+            if(resposta.ok) {
+                formulario.style.display = "none";
+                document.getElementById("progressoGeral").style.display = "none";
+                document.getElementById("successScreen").style.display = "block";
+            } else {
+                throw new Error("Erro no servidor");
+            }
         } catch (error) {
             alert("Ocorreu um problema ao enviar o diagnóstico. Verifique sua conexão e tente novamente.");
             btnSubmit.disabled = false;
             btnSubmit.textContent = "Enviar Diagnóstico";
         }
+    }
+
+    function reiniciarFormulario() {
+        document.getElementById("anamneseForm").reset();
+        etapaAtual = 0;
+        document.querySelectorAll(".answer-container").forEach(c => c.style.display = "none");
+        document.querySelectorAll(".answer-container textarea").forEach(i => i.removeAttribute("required"));
+        document.querySelectorAll(".count").forEach(c => c.textContent = "0");
+        document.getElementById("successScreen").style.display = "none";
+        document.getElementById("anamneseForm").style.display = "block";
+        document.getElementById("progressoGeral").style.display = "flex";
+        atualizarInterfaceEtapa();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 </script>
 </body>
