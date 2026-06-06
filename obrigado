@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Obrigado! - Diagnóstico Recebido</title>
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --bg-color: #f8fafc;
+            --card-bg: #ffffff;
+            --text-color: #1e293b;
+            --border-color: #cbd5e1;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 90vh;
+        }
+
+        .success-container {
+            max-width: 550px;
+            width: 100%;
+            background: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 40px 30px;
+            box-sizing: border-box;
+        }
+
+        .success-icon {
+            font-size: 60px;
+            color: #10b981;
+            margin-bottom: 20px;
+        }
+
+        h1 {
+            color: var(--primary-color);
+            margin: 0 0 15px 0;
+            font-size: 1.8rem;
+        }
+
+        p {
+            font-size: 1.05rem;
+            color: #475569;
+            margin: 0 0 35px 0;
+        }
+
+        .step-subtitle {
+            font-size: 0.95rem;
+            color: #64748b;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+        }
+
+        .btn-whatsapp {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 16px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: white;
+            background-color: #25D366;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.1s;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+
+        .btn-whatsapp:hover {
+            background-color: #1ebd58;
+        }
+
+        .btn-whatsapp:active {
+            transform: scale(0.98);
+        }
+
+        .whatsapp-icon {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+    </style>
+</head>
+<body>
+
+<div class="success-container">
+    <div class="success-icon">✓</div>
+    <h1>Formulário Enviado com Sucesso!</h1>
+    <p>Obrigado por responder ao diagnóstico. Suas respostas já foram processadas pelo nosso sistema.</p>
+    
+    <div class="step-subtitle">Clique para confirmar os próximos passos no whatsapp</div>
+    <a href="https://wa.me/5521967141614?text=Oi%2C%20Gabi!%20Respondi%20seu%20formul%C3%A1rio%20e%20agora%20quero%20agendar%20o%20in%C3%ADcio%20da%20consultoria%20gratuita." class="btn-whatsapp">
+        <!-- Ícone do WhatsApp em SVG -->
+        <svg class="whatsapp-icon" viewBox="0 0 24 24">
+            <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.4 0 11.973 0c3.184.001 6.177 1.242 8.426 3.496 2.248 2.253 3.487 5.244 3.485 8.421-.003 6.623-5.34 11.97-11.914 11.97-1.996-.001-3.96-.5-5.692-1.448L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436 0 9.86-4.413 9.863-9.843.002-2.63-1.023-5.101-2.886-6.968C16.625 1.975 14.16  Tai 1.16 11.969 1.16c-5.44 0-9.865 4.415-9.868 9.846-.001 1.702.451 3.361 1.307 4.8l-.369 1.353 1.411-.37zM17.13 14.4c-.285-.143-1.688-.833-1.948-.928-.26-.096-.45-.143-.64.143-.19.285-.733.928-.9 1.117-.166.19-.333.214-.618.071-.285-.143-1.204-.444-2.293-1.415-.848-.756-1.42-1.688-1.586-1.973-.167-.285-.018-.439.124-.581.128-.127.285-.333.428-.5.143-.166.19-.285.285-.476.095-.19.048-.357-.024-.5-.071-.143-.64-1.543-.876-2.11-.23-.556-.464-.48-.64-.489-.166-.008-.356-.01-.546-.01-.19 0-.5.071-.76.357-.26.285-.998.976-.998 2.38 0 1.405 1.022 2.761 1.164 2.952.143.19 2.013 3.074 4.877 4.31.682.294 1.214.47 1.63.601.685.218 1.31.187 1.804.114.55-.082 1.688-.69 1.925-1.357.238-.667.238-1.238.167-1.357-.072-.119-.262-.214-.547-.357z"/>
+        </svg>
+        Ir ao whatsapp
+    </a>
+</div>
+
+</body>
+</html>
