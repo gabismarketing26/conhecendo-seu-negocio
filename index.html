@@ -214,7 +214,7 @@
 
 <div class="container" id="mainContainer">
     <header>
-        <img src="Gemini_Generated_Image_efqt1befqt1befqt.png" alt="Gabi's Marketing Logo" class="logo">
+        <img src="Gemini_Generated_Image_efqt1befqt1befqt.png" alt="Logo" class="logo">
         <h1>Anamnese: Diagnóstico do Seu Negócio</h1>
     </header>
 
@@ -228,7 +228,8 @@
         <div class="step-indicator">5</div>
     </div>
 
-    <form id="anamneseForm" action="https://script.google.com/macros/s/AKfycbzrn_SoM8ZtPVsM13nbUdQAJX3JiV82hI_EoG18E2lF6LEMvNEv89zrKzkyNxo9k70v/exec" method="POST" onsubmit="enviarFormularioAPI(event)">
+    <!-- O formulário abaixo aponta exatamente para a sua nova URL de implantação -->
+    <form id="anamneseForm" action="https://script.google.com/macros/s/AKfycbylEO7NlE2gGk6nJfbfK3pnNRxCDRn9s24ciTmThGc25LuL_iBMy_ILcrdunhEtjIZ6/exec" method="POST" onsubmit="enviarFormularioAPI(event)">
 
         <!-- ETAPA CADASTRAL -->
         <div class="form-step active">
@@ -801,13 +802,14 @@
         const formData = new FormData(formulario);
 
         try {
+            // Envio configurado em 'no-cors' para aceitar a resposta do Google Apps Script sem travar o navegador
             await fetch(formulario.action, {
                 method: "POST",
                 body: formData,
                 mode: "no-cors"
             });
             
-            // Redireciona imediatamente assumindo o sucesso devido ao modo no-cors
+            // Redirecionamento imediato para a página de obrigado criada na mesma pasta do GitHub
             window.location.href = "obrigado.html";
 
         } catch (error) {
