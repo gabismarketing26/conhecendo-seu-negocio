@@ -228,8 +228,8 @@
         <div class="step-indicator">5</div>
     </div>
 
-    <!-- O formulário abaixo aponta exatamente para a sua nova URL de implantação -->
-    <form id="anamneseForm" action="https://script.google.com/macros/s/AKfycbylEO7NlE2gGk6nJfbfK3pnNRxCDRn9s24ciTmThGc25LuL_iBMy_ILcrdunhEtjIZ6/exec" method="POST" onsubmit="enviarFormularioAPI(event)">
+    <!-- O formulário aponta para o Google Apps Script via atributo data e roda via JS -->
+    <form id="anamneseForm" data-google-action="https://script.google.com/macros/s/AKfycbylEO7NlE2gGk6nJfbfK3pnNRxCDRn9s24ciTmThGc25LuL_iBMy_ILcrdunhEtjIZ6/exec" onsubmit="enviarFormularioAPI(event)">
 
         <!-- ETAPA CADASTRAL -->
         <div class="form-step active">
@@ -796,24 +796,43 @@
 
         const btnSubmit = document.getElementById("btnSubmit");
         btnSubmit.disabled = true;
-        btnSubmit.textContent = "Enviando...";
+        btnSubmit.textContent = "Enviando diagnóstico...";
 
         const formulario = document.getElementById("anamneseForm");
-        const formData = new FormData(formulario);
+        
+        // Dados preparados para a Planilha do Google
+        const formDataGoogle = new FormData(formulario);
+        const urlGoogle = formulario.getAttribute("data-google-action");
 
+        // Dados preparados para o FormSubmit (Vinculado ao seu e-mail)
+        const formDataFormSubmit = new FormData(formulario);
+        const urlFormSubmit = "https://formsubmit.co/ajax/gabismarketing26@gmail.com";
+
+        // Remove tags ou configurações de controle que o FormSubmit não precisa processar de forma poluída
+        formDataFormSubmit.append("_subject", "Novo Diagnóstico de Anamnese Recebido!");
+        formDataFormSubmit.append("_captcha", "false");
+
+        // Dispara ambos os envios ao mesmo tempo em segundo plano
         try {
-            // Envio configurado em 'no-cors' para aceitar a resposta do Google Apps Script sem travar o navegador
-            await fetch(formulario.action, {
-                method: "POST",
-                body: formData,
-                mode: "no-cors"
-            });
+            await Promise.allSettled([
+                // Envio 1: Google Sheets (Modo no-cors evita bloqueios de segurança do navegador)
+                fetch(urlGoogle, {
+                    method: "POST",
+                    body: formDataGoogle,
+                    mode: "no-cors"
+                }),
+                // Envio 2: FormSubmit via JSON/AJAX para não quebrar o fluxo com páginas externas
+                fetch(urlFormSubmit, {
+                    method: "POST",
+                    body: formDataFormSubmit
+                })
+            ]);
             
-            // Redirecionamento imediato para a página de obrigado criada na mesma pasta do GitHub
+            // Após concluir os envios, redireciona o usuário para sua página interna do repositório
             window.location.href = "obrigado.html";
 
         } catch (error) {
-            alert("Ocorreu um problema ao enviar o diagnóstico. Verifique sua conexão e tente novamente.");
+            alert("Ocorreu um problema ao processar o envio. Verifique sua conexão e tente novamente.");
             btnSubmit.disabled = false;
             btnSubmit.textContent = "Enviar Diagnóstico";
         }
